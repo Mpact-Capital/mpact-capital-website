@@ -1,0 +1,1152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>MPact Capital — Asset & Investment Management for the Ownership Economy</title>
+  <meta name="description" content="MPact Capital (MPC) is an SEC-registered investment adviser delivering programmatic capital solutions, scalable housing finance, and proprietary digital financial infrastructure for the Ownership Economy." />
+  <meta name="theme-color" content="#150F33" />
+  <link rel="canonical" href="https://mpactcap.com/" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="apple-touch-icon" href="assets/favicon.svg" />
+
+  <!-- OpenGraph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="MPact Capital" />
+  <meta property="og:title" content="MPact Capital — Financial tools of dignity" />
+  <meta property="og:description" content="SEC RIA managing institutional impact portfolios, scalable capital access for housing, and proprietary digital-asset infrastructure." />
+  <meta property="og:url" content="https://mpactcap.com/" />
+  <meta property="og:image" content="https://mpactcap.com/assets/og-image.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="MPact Capital — Financial tools of dignity" />
+  <meta name="twitter:description" content="SEC RIA managing institutional impact portfolios, scalable capital access for housing, and proprietary digital-asset infrastructure." />
+  <meta name="twitter:image" content="https://mpactcap.com/assets/og-image.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       MPact Capital — brand system (matches MpactCapital.svg)
+       Dark base + vibrant magenta / orange / cyan / yellow accents
+       ============================================================ */
+    :root {
+      /* Brand core */
+      --ink-900: #0A0820;       /* deeper than logo, footer */
+      --ink-800: #150F33;       /* logo background — primary dark */
+      --ink-700: #221A4F;
+      --ink-600: #2E2666;
+      --ink-500: #4438A0;       /* glow */
+      --magenta: #FF00C8;        /* M wordmark */
+      --magenta-700: #C30099;
+      --orange: #FF7B1C;         /* Pact wordmark */
+      --orange-400: #FFA45C;
+      --cyan: #00C7FD;           /* Capital wordmark */
+      --cyan-400: #5BDDFF;
+      --yellow: #FFD900;
+      --red-pink: #FF0A64;
+      --blue: #054FA8;
+
+      /* Neutrals */
+      --cream-50:  #FFF8F2;
+      --cream-100: #FBEFE2;
+      --slate-900: #18112E;
+      --slate-700: #2E284A;
+      --slate-500: #5E5677;
+      --slate-300: #9E96B5;
+      --cloud-100: #F2EBFF;
+      --cloud-50:  #F8F4FF;
+
+      --border-dark: rgba(255, 255, 255, 0.10);
+      --border-soft: rgba(21, 15, 51, 0.10);
+      --shadow-lg: 0 30px 60px -20px rgba(10, 8, 32, 0.45);
+      --shadow-md: 0 10px 30px -12px rgba(10, 8, 32, 0.25);
+      --shadow-glow: 0 0 0 1px rgba(255, 0, 200, 0.4), 0 14px 40px -10px rgba(255, 0, 200, 0.35);
+
+      --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      --font-display: 'Fraunces', 'Inter', Georgia, serif;
+
+      --container: 1200px;
+      --radius-lg: 22px;
+      --radius-md: 14px;
+      --radius-sm: 8px;
+
+      /* Brand gradient for accents */
+      --grad-brand: linear-gradient(90deg, var(--magenta) 0%, var(--orange) 50%, var(--yellow) 75%, var(--cyan) 100%);
+      --grad-warm: linear-gradient(135deg, var(--magenta) 0%, var(--orange) 100%);
+      --grad-cool: linear-gradient(135deg, var(--cyan) 0%, var(--blue) 100%);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--slate-900);
+      background: var(--cream-50);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.015em; margin: 0 0 0.6em; line-height: 1.12; }
+    h1 { font-size: clamp(2.4rem, 5.8vw, 4.4rem); }
+    h2 { font-size: clamp(1.9rem, 3.6vw, 2.8rem); }
+    h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); font-family: var(--font-sans); font-weight: 700; letter-spacing: -0.01em; }
+    p { margin: 0 0 1em; }
+    a { color: inherit; text-decoration: none; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--magenta);
+    }
+    .eyebrow::before { content: ""; width: 28px; height: 2px; background: var(--grad-warm); border-radius: 2px; }
+    .on-dark .eyebrow { color: var(--orange-400); }
+    .on-dark .eyebrow::before { background: var(--grad-brand); }
+    .lead { font-size: clamp(1.05rem, 1.4vw, 1.2rem); color: var(--slate-700); max-width: 60ch; }
+    .on-dark { color: var(--cloud-100); }
+    .on-dark .lead { color: var(--cloud-100); opacity: 0.86; }
+
+    .wrap { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 28px; }
+    section { padding: 96px 0; position: relative; }
+    section.tight { padding: 64px 0; }
+
+    /* ============================================================
+       Top bar
+       ============================================================ */
+    .topbar {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(10, 8, 32, 0.82);
+      backdrop-filter: saturate(160%) blur(14px);
+      -webkit-backdrop-filter: saturate(160%) blur(14px);
+      border-bottom: 1px solid var(--border-dark);
+    }
+    .topbar-inner { display: flex; align-items: center; gap: 24px; height: 76px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; color: #fff; }
+    .brand img { display: block; height: 52px; width: auto; }
+
+    .nav { display: flex; gap: 4px; margin-left: auto; }
+    .nav a {
+      color: var(--cloud-100); opacity: 0.82;
+      padding: 8px 14px; border-radius: 999px;
+      font-size: 14px; font-weight: 500;
+      transition: opacity 0.15s ease, background 0.15s ease;
+    }
+    .nav a:hover { opacity: 1; background: rgba(255,255,255,0.06); }
+    .nav-cta { display: flex; gap: 10px; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 18px; border-radius: 999px;
+      font-weight: 600; font-size: 14px; letter-spacing: 0.01em;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+      border: 1px solid transparent; cursor: pointer; white-space: nowrap;
+    }
+    .btn-primary { background: var(--magenta); color: #fff; box-shadow: 0 8px 24px -8px rgba(255, 0, 200, 0.55); }
+    .btn-primary:hover { transform: translateY(-1px); background: var(--magenta-700); box-shadow: 0 12px 28px -8px rgba(255, 0, 200, 0.7); }
+    .btn-secondary { background: var(--orange); color: var(--ink-800); }
+    .btn-secondary:hover { background: var(--orange-400); transform: translateY(-1px); }
+    .btn-cyan { background: var(--cyan); color: var(--ink-800); }
+    .btn-cyan:hover { background: var(--cyan-400); transform: translateY(-1px); }
+    .btn-ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,0.22); }
+    .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.4); }
+    .btn-outline { background: transparent; color: var(--ink-800); border-color: var(--ink-800); }
+    .btn-outline:hover { background: var(--ink-800); color: #fff; }
+    .btn-lg { padding: 14px 24px; font-size: 15px; }
+    .btn .arrow { transition: transform 0.15s ease; }
+    .btn:hover .arrow { transform: translateX(3px); }
+
+    .hamburger {
+      display: none;
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(255,255,255,0.06); border: 1px solid var(--border-dark);
+      color: #fff; align-items: center; justify-content: center;
+      cursor: pointer; margin-left: auto;
+    }
+    .hamburger svg { width: 20px; height: 20px; }
+
+    /* ============================================================
+       Hero
+       ============================================================ */
+    .hero {
+      position: relative; overflow: hidden;
+      background:
+        radial-gradient(1000px 600px at 85% -50px, rgba(255, 0, 200, 0.3), transparent 60%),
+        radial-gradient(800px 500px at -100px 60%, rgba(0, 199, 253, 0.25), transparent 60%),
+        radial-gradient(700px 400px at 50% 110%, rgba(255, 123, 28, 0.2), transparent 60%),
+        linear-gradient(180deg, var(--ink-900), var(--ink-800));
+      color: #fff;
+      padding: clamp(80px, 12vw, 140px) 0 clamp(96px, 14vw, 160px);
+    }
+    .hero::before {
+      content: ""; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(900px 500px at 60% 40%, #000, transparent 70%);
+      -webkit-mask-image: radial-gradient(900px 500px at 60% 40%, #000, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-grid { position: relative; display: grid; grid-template-columns: 1.25fr 1fr; gap: 56px; align-items: center; }
+    .hero h1 .accent-m { color: var(--magenta); }
+    .hero h1 .accent-o { color: var(--orange); }
+    .hero h1 .accent-c { color: var(--cyan); }
+    .hero-sub { display: inline-flex; flex-wrap: wrap; gap: 10px 18px; margin-top: 28px; font-size: 14px; color: var(--cloud-100); opacity: 0.88; }
+    .hero-sub span { display: inline-flex; align-items: center; gap: 8px; }
+    .hero-sub span:nth-child(1)::before { background: var(--magenta); }
+    .hero-sub span:nth-child(2)::before { background: var(--orange); }
+    .hero-sub span:nth-child(3)::before { background: var(--cyan); }
+    .hero-sub span::before { content: ""; width: 8px; height: 8px; border-radius: 50%; }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
+    .hero-meta { margin-top: 40px; display: flex; gap: 28px; flex-wrap: wrap; font-size: 13px; color: var(--cloud-100); opacity: 0.7; }
+
+    /* Hero visual: platform preview card */
+    .hero-card { position: relative; perspective: 1400px; }
+    .platform-preview {
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02));
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-lg);
+      transform: rotate(-1deg);
+      backdrop-filter: blur(12px);
+    }
+    .pp-head { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+    .pp-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--red-pink); opacity: 0.8; }
+    .pp-dot:nth-child(2) { background: var(--yellow); }
+    .pp-dot:nth-child(3) { background: var(--cyan); }
+    .pp-title { margin-left: 8px; font-size: 12px; color: var(--cloud-100); opacity: 0.75; letter-spacing: 0.08em; text-transform: uppercase; }
+    .pp-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .pp-tile {
+      background: rgba(21, 15, 51, 0.55);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-md);
+      padding: 14px;
+    }
+    .pp-tile .label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan-400); }
+    .pp-tile .value { font-family: var(--font-display); font-size: 22px; color: #fff; margin-top: 4px; font-weight: 600; }
+    .pp-tile .delta { font-size: 12px; color: var(--orange-400); margin-top: 2px; }
+    .pp-tile .delta.up { color: var(--cyan-400); }
+    .pp-chart {
+      height: 78px; margin-top: 8px;
+      background: linear-gradient(180deg, rgba(255,0,200,0.35), rgba(255,123,28,0.25) 60%, rgba(0,199,253,0) 100%);
+      mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 80' preserveAspectRatio='none'><polyline points='0,60 20,52 40,58 60,40 80,46 100,30 120,36 140,22 160,28 180,14 200,18' fill='none' stroke='black' stroke-width='3'/></svg>");
+      -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 80' preserveAspectRatio='none'><polyline points='0,60 20,52 40,58 60,40 80,46 100,30 120,36 140,22 160,28 180,14 200,18' fill='none' stroke='black' stroke-width='3'/></svg>");
+      mask-size: 100% 100%;
+      -webkit-mask-size: 100% 100%;
+    }
+    .pp-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px; border-radius: 999px;
+      background: rgba(0, 199, 253, 0.18); color: var(--cyan-400);
+      font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .pp-pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
+
+    .hero-chip {
+      position: absolute; right: -10px; bottom: -28px;
+      background: var(--grad-warm); color: #fff;
+      border-radius: 16px; padding: 14px 18px;
+      font-weight: 600; font-size: 14px;
+      box-shadow: 0 12px 32px -8px rgba(255, 123, 28, 0.6);
+      transform: rotate(2deg);
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    /* ============================================================
+       Partners ribbon
+       ============================================================ */
+    .ribbon {
+      background: var(--ink-800); color: var(--cloud-100);
+      padding: 28px 0;
+      border-top: 1px solid var(--border-dark); border-bottom: 1px solid var(--border-dark);
+    }
+    .ribbon-inner { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+    .ribbon-label { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cyan-400); white-space: nowrap; }
+    .ribbon-list { display: flex; gap: 36px; flex-wrap: wrap; opacity: 0.82; font-family: var(--font-display); font-size: 16px; font-weight: 600; }
+
+    /* ============================================================
+       Divisions
+       ============================================================ */
+    .divisions { background: var(--cream-50); }
+    .section-head { max-width: 760px; margin-bottom: 56px; }
+    .divs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .div-card {
+      background: #fff; border: 1px solid var(--border-soft); border-radius: var(--radius-lg);
+      padding: 32px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      display: flex; flex-direction: column; gap: 16px;
+      position: relative; overflow: hidden;
+    }
+    .div-card::after {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: var(--grad-brand);
+      opacity: 0; transition: opacity 0.2s ease;
+    }
+    .div-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: transparent; }
+    .div-card:hover::after { opacity: 1; }
+    .div-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      display: grid; place-items: center; color: #fff;
+      box-shadow: 0 6px 16px -8px rgba(21, 15, 51, 0.4);
+    }
+    .div-card:nth-child(1) .div-icon { background: linear-gradient(135deg, var(--magenta), var(--red-pink)); }
+    .div-card:nth-child(2) .div-icon { background: linear-gradient(135deg, var(--orange), var(--yellow)); color: var(--ink-800); }
+    .div-card:nth-child(3) .div-icon { background: linear-gradient(135deg, var(--cyan), var(--blue)); }
+    .div-card:nth-child(4) .div-icon { background: linear-gradient(135deg, var(--ink-700), var(--ink-500)); }
+    .div-card:nth-child(5) .div-icon { background: linear-gradient(135deg, var(--magenta), var(--orange)); }
+    .div-card h3 { margin: 0; color: var(--ink-800); }
+    .div-card p { color: var(--slate-700); margin: 0; font-size: 15px; }
+    .div-card ul { list-style: none; padding: 0; margin: 4px 0 0; display: flex; flex-direction: column; gap: 8px; }
+    .div-card ul li { font-size: 14px; color: var(--slate-700); padding-left: 22px; position: relative; }
+    .div-card ul li::before {
+      content: ""; position: absolute; left: 0; top: 0.55em;
+      width: 12px; height: 2px; background: var(--magenta); border-radius: 2px;
+    }
+    .div-card .tag {
+      display: inline-block; align-self: flex-start;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--magenta); padding: 4px 10px; border: 1px solid currentColor; border-radius: 999px;
+    }
+    .div-card:nth-child(2) .tag { color: var(--orange); }
+    .div-card:nth-child(3) .tag { color: var(--cyan); }
+    .div-card:nth-child(4) .tag { color: var(--ink-500); }
+    .div-card:nth-child(5) .tag { color: var(--magenta); }
+
+    /* ============================================================
+       Platform
+       ============================================================ */
+    .platform {
+      background: linear-gradient(180deg, var(--ink-900), var(--ink-800) 60%, var(--ink-700));
+      color: #fff; position: relative; overflow: hidden;
+    }
+    .platform::before {
+      content: ""; position: absolute; inset: 0;
+      background:
+        radial-gradient(700px 400px at 90% 0%, rgba(255, 217, 0, 0.16), transparent 70%),
+        radial-gradient(600px 360px at 0% 100%, rgba(255, 0, 200, 0.2), transparent 70%);
+      pointer-events: none;
+    }
+    .platform-grid { position: relative; display: grid; grid-template-columns: 1fr 1.05fr; gap: 64px; align-items: center; }
+    .feature-list { display: grid; gap: 16px; margin-top: 24px; }
+    .feature {
+      display: grid; grid-template-columns: 44px 1fr; gap: 16px; align-items: start;
+      padding: 18px; border-radius: var(--radius-md);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border-dark);
+    }
+    .feature-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: grid; place-items: center; color: #fff;
+    }
+    .feature:nth-child(1) .feature-icon { background: rgba(255, 0, 200, 0.18); color: var(--magenta); }
+    .feature:nth-child(2) .feature-icon { background: rgba(255, 123, 28, 0.18); color: var(--orange-400); }
+    .feature:nth-child(3) .feature-icon { background: rgba(0, 199, 253, 0.18); color: var(--cyan-400); }
+    .feature:nth-child(4) .feature-icon { background: rgba(255, 217, 0, 0.18); color: var(--yellow); }
+    .feature h4 { font-family: var(--font-sans); font-weight: 700; font-size: 15px; color: #fff; margin: 0 0 4px; letter-spacing: -0.005em; }
+    .feature p { font-size: 14px; margin: 0; color: var(--cloud-100); opacity: 0.78; }
+
+    .login-chooser {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-lg);
+    }
+    .login-chooser h3 { font-family: var(--font-display); font-weight: 600; font-size: 22px; color: #fff; margin: 0 0 6px; }
+    .login-chooser .sub { color: var(--cloud-100); opacity: 0.78; font-size: 14px; margin: 0 0 24px; }
+    .login-options { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .login-option {
+      display: block; padding: 22px; border-radius: var(--radius-md);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border-dark);
+      transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+      cursor: pointer; text-align: left;
+    }
+    .login-option:hover { transform: translateY(-2px); background: rgba(255, 0, 200, 0.08); border-color: var(--magenta); }
+    .login-option:nth-child(2):hover { background: rgba(255, 123, 28, 0.08); border-color: var(--orange); }
+    .login-option .lo-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: grid; place-items: center; margin-bottom: 12px; color: #fff;
+    }
+    .login-option:nth-child(1) .lo-icon { background: var(--magenta); }
+    .login-option:nth-child(2) .lo-icon { background: var(--orange); color: var(--ink-800); }
+    .login-option strong { display: block; color: #fff; font-size: 16px; font-family: var(--font-sans); font-weight: 700; margin-bottom: 4px; }
+    .login-option span.desc { color: var(--cloud-100); opacity: 0.75; font-size: 13px; line-height: 1.45; }
+    .login-foot { margin-top: 20px; font-size: 12px; color: var(--cloud-100); opacity: 0.6; display: flex; align-items: center; gap: 8px; }
+
+    /* ============================================================
+       Mission
+       ============================================================ */
+    .mission { background: var(--cream-100); }
+    .mission-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: center; }
+    .mission-quote {
+      font-family: var(--font-display); font-weight: 500;
+      font-size: clamp(1.4rem, 2.4vw, 1.85rem); line-height: 1.35;
+      color: var(--ink-800);
+    }
+    .mission-quote::before { content: "\201C"; color: var(--magenta); font-size: 3em; line-height: 0.5; vertical-align: -0.35em; margin-right: 6px; }
+    .pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
+    .pillar { background: #fff; border: 1px solid var(--border-soft); border-radius: var(--radius-md); padding: 20px; }
+    .pillar strong { display: block; color: var(--ink-800); font-size: 15px; margin-bottom: 4px; }
+    .pillar span { font-size: 13px; color: var(--slate-700); }
+    .pillar:nth-child(1) { border-top: 3px solid var(--magenta); }
+    .pillar:nth-child(2) { border-top: 3px solid var(--orange); }
+    .pillar:nth-child(3) { border-top: 3px solid var(--cyan); }
+    .pillar:nth-child(4) { border-top: 3px solid var(--yellow); }
+
+    /* ============================================================
+       Team / Advisory
+       ============================================================ */
+    .team, .advisory { background: #fff; }
+    .advisory { background: var(--cream-50); }
+    .people-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .person {
+      background: var(--cream-50); border: 1px solid var(--border-soft); border-radius: var(--radius-lg);
+      padding: 28px; text-align: left;
+    }
+    .advisory .person { background: #fff; }
+    .person-photo {
+      width: 96px; height: 96px; border-radius: 50%;
+      display: grid; place-items: center;
+      color: #fff; font-family: var(--font-display); font-weight: 600; font-size: 30px;
+      margin-bottom: 18px;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--ink-700), var(--magenta));
+    }
+    .person-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .person:nth-child(2) .person-photo { background: linear-gradient(135deg, var(--ink-700), var(--orange)); }
+    .person:nth-child(3) .person-photo { background: linear-gradient(135deg, var(--ink-700), var(--cyan)); }
+    .person strong { display: block; color: var(--ink-800); font-size: 17px; font-family: var(--font-sans); font-weight: 700; }
+    .person .role { font-size: 12px; color: var(--magenta); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; }
+    .person:nth-child(2) .role { color: var(--orange); }
+    .person:nth-child(3) .role { color: var(--cyan); }
+    .advisory .person:nth-child(1) .role { color: var(--cyan); }
+    .advisory .person:nth-child(2) .role { color: var(--magenta); }
+    .advisory .person:nth-child(3) .role { color: var(--orange); }
+    .person p { font-size: 14px; color: var(--slate-700); margin-top: 14px; margin-bottom: 0; line-height: 1.55; }
+    .photo-note {
+      margin-top: 10px; font-size: 11px; color: var(--slate-300);
+      font-style: italic;
+    }
+
+    /* ============================================================
+       News
+       ============================================================ */
+    .news { background: var(--ink-800); color: var(--cloud-100); }
+    .news .section-head h2 { color: #fff; }
+    .news-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .news-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .news-card:hover { transform: translateY(-3px); background: rgba(255,255,255,0.07); border-color: var(--magenta); }
+    .news-meta { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cyan-400); display: flex; gap: 12px; align-items: center; }
+    .news-meta .sep { width: 4px; height: 4px; background: currentColor; border-radius: 50%; opacity: 0.5; }
+    .news-card h3 { color: #fff; font-family: var(--font-display); font-weight: 600; font-size: 19px; margin: 4px 0 0; letter-spacing: -0.005em; line-height: 1.3; }
+    .news-card p { font-size: 14px; color: var(--cloud-100); opacity: 0.78; margin: 0; }
+    .news-card .news-link { font-size: 13px; font-weight: 600; color: var(--orange-400); margin-top: 8px; }
+    .news-card .news-link:hover { color: var(--orange); }
+
+    /* ============================================================
+       CTA strip
+       ============================================================ */
+    .cta-strip {
+      background:
+        radial-gradient(700px 320px at 80% 50%, rgba(255, 0, 200, 0.35), transparent 60%),
+        radial-gradient(500px 280px at 0% 50%, rgba(0, 199, 253, 0.3), transparent 60%),
+        linear-gradient(135deg, var(--ink-800), var(--ink-900));
+      color: #fff;
+      border-radius: var(--radius-lg);
+      padding: clamp(36px, 6vw, 64px);
+      margin: 32px 0;
+      display: grid; grid-template-columns: 1.4fr 1fr; gap: 36px; align-items: center;
+      border: 1px solid var(--border-dark);
+    }
+    .cta-strip h2 { color: #fff; margin: 0 0 8px; }
+    .cta-strip p { color: var(--cloud-100); opacity: 0.85; margin: 0; max-width: 50ch; }
+    .cta-strip .actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
+
+    /* ============================================================
+       Contact
+       ============================================================ */
+    .contact { background: var(--cream-100); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .contact-card {
+      background: #fff; border: 1px solid var(--border-soft); border-radius: var(--radius-lg);
+      padding: 32px;
+    }
+    .contact-row { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border-soft); }
+    .contact-row:last-child { border-bottom: none; }
+    .contact-row .icon { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; flex-shrink: 0; color: #fff; }
+    .contact-row:nth-child(1) .icon { background: var(--magenta); }
+    .contact-row:nth-child(2) .icon { background: var(--orange); }
+    .contact-row:nth-child(3) .icon { background: var(--cyan); }
+    .contact-row strong { display: block; color: var(--ink-800); font-size: 15px; margin-bottom: 2px; }
+    .contact-row span { font-size: 14px; color: var(--slate-700); }
+    .contact-row a { color: var(--magenta); font-weight: 600; }
+    .contact-row a:hover { color: var(--magenta-700); }
+
+    /* ============================================================
+       Footer
+       ============================================================ */
+    footer { background: var(--ink-900); color: var(--cloud-100); padding: 64px 0 32px; }
+    .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .foot-brand p { font-size: 14px; opacity: 0.7; max-width: 36ch; margin-top: 16px; }
+    .foot-col h5 { font-family: var(--font-sans); font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cyan-400); margin: 0 0 14px; }
+    .foot-col a { display: block; font-size: 14px; color: var(--cloud-100); opacity: 0.75; padding: 6px 0; transition: opacity 0.15s ease, color 0.15s ease; }
+    .foot-col a:hover { opacity: 1; color: var(--magenta); }
+    .foot-legal { border-top: 1px solid var(--border-dark); padding-top: 24px; display: flex; gap: 16px; flex-wrap: wrap; justify-content: space-between; align-items: center; font-size: 12px; opacity: 0.75; }
+    .foot-legal .links { display: flex; gap: 18px; flex-wrap: wrap; }
+    .foot-disclaimer { font-size: 12px; opacity: 0.55; margin-top: 18px; line-height: 1.6; max-width: 900px; }
+
+    /* ============================================================
+       Mobile nav
+       ============================================================ */
+    .mobile-nav {
+      position: fixed; top: 76px; left: 0; right: 0;
+      background: var(--ink-900); border-bottom: 1px solid var(--border-dark);
+      padding: 16px 28px 24px;
+      transform: translateY(-110%); transition: transform 0.25s ease;
+      z-index: 49;
+    }
+    .mobile-nav.open { transform: translateY(0); }
+    .mobile-nav a { display: block; color: var(--cloud-100); padding: 12px 0; border-bottom: 1px solid var(--border-dark); font-size: 16px; }
+    .mobile-nav .btn-row { display: flex; gap: 10px; margin-top: 18px; }
+    .mobile-nav .btn-row .btn { flex: 1; justify-content: center; }
+
+    /* ============================================================
+       Responsive
+       ============================================================ */
+    @media (max-width: 1024px) {
+      .nav a { padding: 8px 10px; font-size: 13px; }
+      .hero-grid, .platform-grid, .mission-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .divs-grid { grid-template-columns: 1fr 1fr; }
+      .people-grid { grid-template-columns: 1fr 1fr; }
+      .news-grid { grid-template-columns: 1fr; }
+      .foot-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .cta-strip { grid-template-columns: 1fr; }
+      .cta-strip .actions { justify-content: flex-start; }
+    }
+    @media (max-width: 780px) {
+      .nav, .nav-cta { display: none; }
+      .hamburger { display: inline-flex; }
+      section { padding: 64px 0; }
+      .divs-grid { grid-template-columns: 1fr; }
+      .people-grid { grid-template-columns: 1fr; }
+      .login-options { grid-template-columns: 1fr; }
+      .pillars { grid-template-columns: 1fr; }
+      .brand img { height: 42px; }
+    }
+    @media (max-width: 520px) {
+      .wrap { padding: 0 20px; }
+      .foot-grid { grid-template-columns: 1fr; }
+      .hero-chip { position: static; margin-top: 18px; display: inline-flex; }
+      .ribbon-list { gap: 18px; font-size: 14px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       Top bar
+       ============================================================ -->
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a href="#top" class="brand" aria-label="MPact Capital home">
+        <img src="assets/mpact-logo.svg" alt="MPact Capital" />
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#divisions">Divisions</a>
+        <a href="#platform">Platform</a>
+        <a href="#team">Team</a>
+        <a href="#advisory-board">Advisory Board</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn btn-ghost" data-login="staff" href="#">Staff Login</a>
+        <a class="btn btn-primary" data-login="client" href="#">Client Login <span class="arrow">→</span></a>
+      </div>
+
+      <button class="hamburger" aria-label="Open menu" aria-expanded="false" id="hamburger">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+
+    <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+      <a href="#divisions">Divisions</a>
+      <a href="#platform">Platform</a>
+      <a href="#team">Team</a>
+      <a href="#advisory-board">Advisory Board</a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+      <div class="btn-row">
+        <a class="btn btn-ghost" data-login="staff" href="#">Staff Login</a>
+        <a class="btn btn-primary" data-login="client" href="#">Client Login</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============================================================
+         Hero
+         ============================================================ -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy on-dark">
+          <span class="eyebrow">The Ownership Economy</span>
+          <h1>Financial tools of <span class="accent-m">dignity</span> — borne from data&#8209;science, built for <span class="accent-o">people</span>.</h1>
+          <p class="lead">MPact Capital, LLC (MPC) is an SEC&#8209;registered investment adviser, managed and led with compassion by passionate industry professionals. We pursue sustainable, market-based, community-focused outcomes built on mutualistic principles.</p>
+
+          <div class="hero-sub">
+            <span>Asset &amp; Investment Management</span>
+            <span>Capital Market Solutions</span>
+            <span>Digital Finance Infrastructure</span>
+          </div>
+
+          <div class="hero-ctas">
+            <a class="btn btn-primary btn-lg" data-login="client" href="#">Open the Platform <span class="arrow">→</span></a>
+            <a class="btn btn-ghost btn-lg" href="#contact">Request an Introduction</a>
+          </div>
+
+          <div class="hero-meta">
+            <span>Charlotte, NC</span>
+            <span>SEC&nbsp;RIA</span>
+            <span>Mutualism in every mandate</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="platform-preview" role="img" aria-label="MPact Platform preview">
+            <div class="pp-head">
+              <span class="pp-dot"></span><span class="pp-dot"></span><span class="pp-dot"></span>
+              <span class="pp-title">MPact Asset Management Platform</span>
+            </div>
+            <div class="pp-row">
+              <div class="pp-tile">
+                <div class="label">Pact NAV</div>
+                <div class="value">$12.4M</div>
+                <div class="delta up">+1.8% MTD</div>
+              </div>
+              <div class="pp-tile">
+                <div class="label">Target Return</div>
+                <div class="value">6.0%</div>
+                <div class="delta">CHIF benchmark</div>
+              </div>
+            </div>
+            <div class="pp-tile">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                  <div class="label">Impact Performance</div>
+                  <div class="value">94 Units Preserved</div>
+                </div>
+                <span class="pp-pill">Live</span>
+              </div>
+              <div class="pp-chart" aria-hidden="true"></div>
+            </div>
+          </div>
+          <div class="hero-chip">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 L15 8 L22 9 L17 14 L18 21 L12 18 L6 21 L7 14 L2 9 L9 8 Z"/></svg>
+            Core Housing Impact Fund
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         Partners ribbon
+         ============================================================ -->
+    <div class="ribbon">
+      <div class="wrap ribbon-inner">
+        <span class="ribbon-label">Strategic Partners</span>
+        <div class="ribbon-list">
+          <span>Homium</span>
+          <span>MPact Mission Foundation</span>
+          <span>Core Housing Impact Fund</span>
+          <span>Global Oak Capital Markets</span>
+          <span>Mission-Aligned Lenders</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         Divisions — verbatim copy from mpactcap.com/divisions
+         ============================================================ -->
+    <section id="divisions" class="divisions">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">MPact Capital Divisions</span>
+          <h2>Five divisions, one mission: deploy capital where it compounds for people.</h2>
+          <p class="lead">The Asset &amp; Investment Management as well as the Capital Markets divisions are underpinned by our proprietary, digitally-native financial infrastructure.</p>
+        </div>
+
+        <div class="divs-grid">
+
+          <article class="div-card">
+            <div class="div-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V10l9-7 9 7v11"/><path d="M9 21V12h6v9"/></svg>
+            </div>
+            <span class="tag">MPC Asset Management</span>
+            <h3>Core Housing Impact Fund (CHIF)</h3>
+            <p>MPC curates customizable separately managed accounts (SMA aka "Pacts") tailored to our client's target impact-return profile. This novel approach offers optimized exposure to home price appreciation (HPA) through investments in Homium and other tokenized fixed income and liquid yielding assets.</p>
+            <ul>
+              <li>Pacts are governed by a custom Investment &amp; Impact Management Agreement (IIMA) for superior transparency, real-time monitoring &amp; reporting, and greater control of investment and impact outcomes — with mutualism in every mandate.</li>
+            </ul>
+          </article>
+
+          <article class="div-card">
+            <div class="div-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l3-3 4 4 5-6"/></svg>
+            </div>
+            <span class="tag">MPC Investment Management</span>
+            <h3>Private Credit Impact Solutions</h3>
+            <p>MPC delivers place-based OCIO solutions for a variety of clients, including non-profit organizations, faith-based institutions, municipalities, developers, family offices and foundations.</p>
+            <ul>
+              <li>Comprehensive impact investment services and bespoke impact loan structures to support mission-aligned banks and lenders, driving access to the ownership economy across small businesses and homeownership.</li>
+              <li>From management of proceeds, to origination programs and portfolio management, MPC delivers seamless, strategic OCIO solutions for sustainable, mission-driven lending and investment initiatives.</li>
+            </ul>
+          </article>
+
+          <article class="div-card">
+            <div class="div-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>
+            </div>
+            <span class="tag">MPC Capital Markets</span>
+            <h3>Capital &amp; Liquidity. AI Securitization.</h3>
+            <p>MPC supports a wide range of clients with innovative capital-market strategies that fund modernized, mission-aligned impact projects — required to cure the affordable and workforce housing crisis.</p>
+            <ul>
+              <li><strong>Capital &amp; Liquidity Strategies —</strong> Proven solutions for traditional and tokenized structures including structured products, taxable &amp; tax-exempt debt, loans, and equity originations.</li>
+              <li><strong>AI Securitization Modeling —</strong> In-house, AI-enabled tools to securitize and rate non-conforming loan pools, providing unparalleled portfolio research while unlocking secondary liquidity options in an otherwise illiquid market.</li>
+            </ul>
+          </article>
+
+          <article class="div-card">
+            <div class="div-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/><path d="M7 9l3 3-3 3M13 15h4"/></svg>
+            </div>
+            <span class="tag">Digital Financial Infrastructure</span>
+            <h3>MPC DFI — data-science for the good</h3>
+            <p>MPC delivers superior value across all divisions through industry-leading digital financial infrastructure (DFI) which enhances operational efficiencies, enlightens liquidity and risk management, improves net profit margins, and underpins all aspects of our customized client solutions.</p>
+            <ul>
+              <li>Deployed to address socioeconomic equity challenges to the ownership economy within housing and small businesses.</li>
+            </ul>
+          </article>
+
+          <article class="div-card">
+            <div class="div-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+            </div>
+            <span class="tag">Digital Assets Advisory</span>
+            <h3>Bridging traditional finance and blockchain</h3>
+            <p>Our Digital Assets Advisory practice helps clients navigate the evolving digital finance landscape with clarity, confidence, and compliance. We advise on the full lifecycle of digital asset integration — from strategy and infrastructure planning to execution, tokenization, and post-trade operations.</p>
+            <ul>
+              <li>Tokenization strategy and implementation</li>
+              <li>Technology and infrastructure evaluation for secure, interoperable solutions</li>
+              <li>Regulatory and compliance advisory</li>
+              <li>Integration of digital rails with traditional financial systems</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         Platform (Lighthouse / Asset Management Portal)
+         ============================================================ -->
+    <section id="platform" class="platform on-dark">
+      <div class="wrap platform-grid">
+        <div>
+          <span class="eyebrow">MPact Asset Management Platform</span>
+          <h2 style="color:#fff;">A purpose-built portal for staff, fund managers, and SMA clients.</h2>
+          <p class="lead">Every client of MPact Capital gets a secure, MFA-protected workspace to monitor portfolio performance, review impact outcomes, and access reporting — all backed by row-level security and audit-ready logging.</p>
+
+          <div class="feature-list">
+            <div class="feature">
+              <div class="feature-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </div>
+              <div>
+                <h4>Invite-only access with mandatory MFA</h4>
+                <p>No public sign-up. Every account is provisioned by your MPC relationship lead and protected by TOTP multi-factor authentication.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <div class="feature-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l3 3 7-7"/><path d="M11 12l3 3 7-7"/></svg>
+              </div>
+              <div>
+                <h4>Portfolio + impact, side by side</h4>
+                <p>Track financial performance alongside ICMA / SDG-aligned impact metrics. Designed for the Core Housing Impact Fund and other Pacts.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <div class="feature-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              </div>
+              <div>
+                <h4>Append-only audit log</h4>
+                <p>Every staff action and client view is recorded. Built for SEC RIA compliance and the standards your auditors expect.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <div class="feature-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M12 16v6M2 12h6M16 12h6"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
+              <div>
+                <h4>MPC controls for sensitive actions</h4>
+                <p>Multi-party computation gating for treasury and disbursement workflows — no single user can move material capital alone.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="login-chooser">
+          <h3>Sign in to MPact</h3>
+          <p class="sub">Choose how you access the platform. Both options lead to the same secure portal.</p>
+          <div class="login-options">
+            <a class="login-option" data-login="staff" href="#" aria-label="Staff login">
+              <div class="lo-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+              </div>
+              <strong>Staff Login</strong>
+              <span class="desc">Portfolio managers, analysts, IR &amp; admin access to client books, valuations, and approvals.</span>
+            </a>
+            <a class="login-option" data-login="client" href="#" aria-label="Client login">
+              <div class="lo-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
+              </div>
+              <strong>Client Login</strong>
+              <span class="desc">SMA clients &amp; authorized investors — read-only access to your Pact, statements, and impact reports.</span>
+            </a>
+          </div>
+          <div class="login-foot">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Secured with Supabase Auth, TOTP MFA, and row-level security
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         Mission
+         ============================================================ -->
+    <section id="mission" class="mission">
+      <div class="wrap mission-grid">
+        <div>
+          <span class="eyebrow">Our mission</span>
+          <h2>Market discipline. Community outcomes. No tradeoff.</h2>
+        </div>
+        <div>
+          <p class="mission-quote">MPact Capital, LLC is an SEC RIA managed and led with compassion by passionate industry professionals — pursuing sustainable, market-based, community-focused outcomes built on mutualistic principles.</p>
+          <div class="pillars">
+            <div class="pillar"><strong>Programmatic</strong><span>Systems and partnerships that scale beyond any single deal.</span></div>
+            <div class="pillar"><strong>Mutualistic</strong><span>Capital structures where investor returns and community wins are aligned.</span></div>
+            <div class="pillar"><strong>Data-native</strong><span>Decisions backed by proprietary data and rigorous measurement.</span></div>
+            <div class="pillar"><strong>Auditable</strong><span>Compliance, RLS, and append-only logs as a first-class product feature.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         Team — verbatim bios from mpactcap.com/team
+         ============================================================ -->
+    <section id="team" class="team">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Team</span>
+          <h2>Founding partners with 60+ years across capital markets, digital assets, and impact.</h2>
+        </div>
+        <div class="people-grid">
+
+          <article class="person">
+            <div class="person-photo"><img src="assets/marcus-martin.jpg" alt="Marcus Martin II" /></div>
+            <strong>Marcus Martin II</strong>
+            <div class="role">Founding Partner · CIO &amp; CCO</div>
+            <p>During his 25-year career across Institutional Investments, Capital Markets, International and Emerging Markets, and Investment Banking at UBS, Merrill Lynch, and Lehman Brothers, Marcus also notably launched South Carolina's first minority-owned Investment Bank (Global Oak Capital Markets). He serves as Chief Executive Officer at Homium and previously led ESG, Impact and Digital Innovation teams at U.S. Bank.</p>
+          </article>
+
+          <article class="person">
+            <div class="person-photo" aria-hidden="true">MK</div>
+            <strong>Milena Kohlhofer</strong>
+            <div class="role">Founding Partner · Head of Digital Financial Infrastructure</div>
+            <p>Over her 17 years in Capital Markets and Wealth Management, Milena has led key strategic Digital Assets initiatives at U.S. Bank, Citi, and Bank of America. She leads Sales and Partnerships at Ownera and possesses expertise in blockchain, AI infrastructure, and impact investing networks.</p>
+            <div class="photo-note">Drop assets/milena-kohlhofer.jpg to replace initials</div>
+          </article>
+
+          <article class="person">
+            <div class="person-photo" aria-hidden="true">AS</div>
+            <strong>Amari Sherrill</strong>
+            <div class="role">Founding Partner · Head of Trading &amp; Fund Operations</div>
+            <p>With experience across several capital-markets products, including origination and underwriting of Investment Grade &amp; High Yield Debt, Amari has provided liquidity solutions to a range of clients. Most recently at U.S. Bank handling ESG Capital Markets Advisory and Digital Innovation responsibilities.</p>
+            <div class="photo-note">Drop assets/amari-sherrill.jpg to replace initials</div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         Advisory Board — verbatim bios from mpactcap.com/advisory-board
+         ============================================================ -->
+    <section id="advisory-board" class="advisory">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Advisory Board</span>
+          <h2>A senior bench from banking, risk, and capital markets — guiding mission and rigor.</h2>
+        </div>
+        <div class="people-grid">
+
+          <article class="person">
+            <div class="person-photo" aria-hidden="true">JK</div>
+            <strong>Jim Kelligrew</strong>
+            <div class="role">Former Vice Chair, U.S. Bank</div>
+            <p>Jim Kelligrew is a seasoned banking executive with over 30 years of experience in capital markets and commercial banking. He served as Vice Chair and Head of Corporate &amp; Commercial Banking at U.S. Bank, where he expanded capabilities and launched the Digital Assets division, including the first-ever digital racial equity bond. Prior positions included senior roles at Wells Fargo Securities and Bank of America Securities since 2009.</p>
+            <div class="photo-note">Drop assets/jim-kelligrew.jpg to replace initials</div>
+          </article>
+
+          <article class="person">
+            <div class="person-photo" aria-hidden="true">JB</div>
+            <strong>Julie Bernard</strong>
+            <div class="role">Principal · Deloitte Risk &amp; Financial Advisory</div>
+            <p>Julie leads Cyber Risk Services for the insurance sector with over 30 years of experience at the intersection of business process and information technology. Her expertise spans security strategy, privacy, authentication, and fraud prevention. She developed Deloitte's financial services cybersecurity spending benchmark and served on advisory boards including FS-ISAC. BA in Music and Business Administration from Westminster College; MBA in Finance from Rensselaer Polytechnic Institute.</p>
+            <div class="photo-note">Drop assets/julie-bernard.jpg to replace initials</div>
+          </article>
+
+          <article class="person">
+            <div class="person-photo" aria-hidden="true">EW</div>
+            <strong>Euclid Walker</strong>
+            <div class="role">Managing Principal · Parkway Investment Management</div>
+            <p>Euclid brings over 26 years of experience in investment banking, private equity, and alternative investment advisory. He manages Parkway Investment Management and serves as Senior Partner at Global Oak Capital Markets. A former Morgan Stanley Executive Director with experience across New York, London, and Johannesburg advising on M&amp;A and capital markets, he founded firms focused on family office advisory and opportunity zone investing. Phi Beta Kappa graduate of Morehouse College; chairs its Trusteeship Committee.</p>
+            <div class="photo-note">Drop assets/euclid-walker.jpg to replace initials</div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         News — items from mpactcap.com/news
+         ============================================================ -->
+    <section id="news" class="news on-dark">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">In the News</span>
+          <h2>MPact in the press and on stage.</h2>
+        </div>
+        <div class="news-grid">
+
+          <article class="news-card">
+            <div class="news-meta"><span>Aug 2, 2025</span><span class="sep"></span><span>Podcast</span></div>
+            <h3>Marcus Martin joins the Urban Conservative podcast to speak about affordable home ownership</h3>
+            <p>A conversation on how shared-equity and tokenized fixed-income structures can broaden access to home ownership.</p>
+            <a class="news-link" href="#" rel="noopener">Listen to the episode →</a>
+          </article>
+
+          <article class="news-card">
+            <div class="news-meta"><span>May 13, 2025</span><span class="sep"></span><span>EIN Presswire</span></div>
+            <h3>MPact Capital Launches SEC-Registered RIA to Bridge Digital Assets and Real-World Impact Investing</h3>
+            <p>Announcing MPact Capital, LLC — pairing market-based discipline with community-focused outcomes across institutional advisory, scalable real-estate finance, and proprietary technology.</p>
+            <a class="news-link" href="https://www.einpresswire.com/" target="_blank" rel="noopener">Read the announcement →</a>
+          </article>
+
+          <article class="news-card">
+            <div class="news-meta"><span>Mar 7, 2025</span><span class="sep"></span><span>Brookings Institution</span></div>
+            <h3>Congratulations to our Spotlight Innovators — Valuing Homes in Black Communities Challenge</h3>
+            <p>Economic Architecture and The Brookings Institution recognize the Spotlight Innovators advancing equitable home valuation.</p>
+            <a class="news-link" href="https://www.brookings.edu/" target="_blank" rel="noopener">Read more →</a>
+          </article>
+
+          <article class="news-card">
+            <div class="news-meta"><span>Dec 10, 2024</span><span class="sep"></span><span>Economic Architecture Project</span></div>
+            <h3>Shared equity and community homeownership trusts offer a sustainable approach to down payment assistance</h3>
+            <p>How mutualistic capital structures can replace one-off subsidies with durable wealth-building paths.</p>
+            <a class="news-link" href="#" rel="noopener">Read the article →</a>
+          </article>
+
+          <article class="news-card">
+            <div class="news-meta"><span>Nov 27, 2024</span><span class="sep"></span><span>ESG Dive</span></div>
+            <h3>Homium's new chief impact officer wants to build a homeownership asset class</h3>
+            <p>Marcus Martin II on building an institutional-grade homeownership asset class through tokenized shared-appreciation finance.</p>
+            <a class="news-link" href="https://www.esgdive.com/" target="_blank" rel="noopener">Read on ESG Dive →</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CTA strip
+         ============================================================ -->
+    <section class="tight" style="background: var(--cream-50);">
+      <div class="wrap">
+        <div class="cta-strip">
+          <div>
+            <span class="eyebrow on-dark">Ready to begin</span>
+            <h2>Sign in or request an introduction.</h2>
+            <p>Staff and clients access the same MPact Asset Management Platform. New to MPact? Reach out and we'll provision your account.</p>
+          </div>
+          <div class="actions">
+            <a class="btn btn-secondary btn-lg" data-login="staff" href="#">Staff Login</a>
+            <a class="btn btn-primary btn-lg" data-login="client" href="#">Client Login <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         Contact
+         ============================================================ -->
+    <section id="contact" class="contact">
+      <div class="wrap contact-grid">
+        <div>
+          <span class="eyebrow">Get in touch</span>
+          <h2>Talk to us about programmatic capital, housing finance, or platform access.</h2>
+          <p class="lead">For introductions, partnership inquiries, or platform onboarding, reach our principal directly. We respond within one business day.</p>
+        </div>
+        <div class="contact-card">
+          <div class="contact-row">
+            <div class="icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <strong>Office</strong>
+              <span>4421 Montibello Drive, Charlotte, NC 28226</span>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M4 4l8 8 8-8"/></svg>
+            </div>
+            <div>
+              <strong>Email</strong>
+              <span><a href="mailto:marcus@mpactcap.com">marcus@mpactcap.com</a></span>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 14v5a2 2 0 0 1-2 2h-2.5a16 16 0 0 1-14.5-14.5V4a2 2 0 0 1 2-2h5l2 5-3 2a12 12 0 0 0 6 6l2-3 5 2z"/></svg>
+            </div>
+            <div>
+              <strong>Existing platform user?</strong>
+              <span><a href="#" data-login="client">Sign in to the MPact Asset Management Platform →</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       Footer
+       ============================================================ -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a href="#top" class="brand">
+            <img src="assets/mpact-logo.svg" alt="MPact Capital" style="height:64px;" />
+          </a>
+          <p>SEC-registered investment adviser. Programmatic capital, scalable housing finance, and proprietary digital financial infrastructure for the Ownership Economy.</p>
+        </div>
+        <div class="foot-col">
+          <h5>Company</h5>
+          <a href="#divisions">Divisions</a>
+          <a href="#platform">Platform</a>
+          <a href="#team">Team</a>
+          <a href="#advisory-board">Advisory Board</a>
+          <a href="#news">News</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="foot-col">
+          <h5>Platform</h5>
+          <a href="#" data-login="staff">Staff Login</a>
+          <a href="#" data-login="client">Client Login</a>
+          <a href="#contact">Request access</a>
+        </div>
+        <div class="foot-col">
+          <h5>Affiliates</h5>
+          <a href="https://mpactfoundation.org" target="_blank" rel="noopener">MPact Mission Foundation ↗</a>
+          <a href="#">Core Housing Impact Fund</a>
+          <a href="#">Homium</a>
+        </div>
+      </div>
+
+      <div class="foot-legal">
+        <span>&copy; <span id="year">2026</span> MPact Capital, LLC. All rights reserved. 4421 Montibello Drive, Charlotte, NC 28226</span>
+        <div class="links">
+          <a href="#">Site Map</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms &amp; Conditions</a>
+          <a href="#">Form ADV</a>
+        </div>
+      </div>
+
+      <p class="foot-disclaimer">
+        The information contained herein is not an offer to sell, or a solicitation of an offer to buy, any securities and is qualified in its entirety by the more complete information, including risks of investment, provided by MPact Capital, LLC, in its sole discretion, to certain qualified investors who meet certain investor criteria. There are no guarantees that we will achieve any of our investment objectives, and investment results may vary substantially over time. MPact Capital, LLC ("MPC") is an investment adviser registered with the U.S. Securities and Exchange Commission. Registration does not imply a certain level of skill or training.
+      </p>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JS — login routing + mobile nav + year
+       ============================================================ -->
+  <script>
+    // CONFIG — swap LOGIN_URL when the MPact Asset Management Platform
+    // (mpact-fund-management / "Lighthouse") is deployed. The app routes
+    // by user_type after AAL2, so Staff and Client share a single
+    // /login URL. A ?role= hint is appended for optional copy switching.
+    const CONFIG = {
+      LOGIN_URL: 'http://localhost:3000/login',
+      // LOGIN_URL: 'https://portal.mpactcap.com/login',
+      // LOGIN_URL: 'https://mpact-fund-management.vercel.app/login',
+    };
+
+    document.querySelectorAll('[data-login]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        const role = el.getAttribute('data-login');
+        const url = new URL(CONFIG.LOGIN_URL);
+        url.searchParams.set('role', role);
+        window.location.href = url.toString();
+      });
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    hamburger?.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', String(open));
+      mobileNav.setAttribute('aria-hidden', String(!open));
+    });
+    mobileNav?.querySelectorAll('a').forEach((a) =>
+      a.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileNav.setAttribute('aria-hidden', 'true');
+      })
+    );
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0A0820"/>
+      <stop offset="1" stop-color="#221A4F"/>
+    </linearGradient>
+    <radialGradient id="glowMagenta" cx="950" cy="120" r="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FF00C8" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#FF00C8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowOrange" cx="120" cy="540" r="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FF7B1C" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#FF7B1C" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowCyan" cx="600" cy="630" r="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00C7FD" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#00C7FD" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glowMagenta)"/>
+  <rect width="1200" height="630" fill="url(#glowOrange)"/>
+  <rect width="1200" height="630" fill="url(#glowCyan)"/>
+
+  <g stroke="#ffffff" stroke-opacity="0.05" stroke-width="1">
+    <path d="M0 100 H1200 M0 200 H1200 M0 300 H1200 M0 400 H1200 M0 500 H1200"/>
+    <path d="M120 0 V630 M240 0 V630 M360 0 V630 M480 0 V630 M600 0 V630 M720 0 V630 M840 0 V630 M960 0 V630 M1080 0 V630"/>
+  </g>
+
+  <!-- MPact bar-mark -->
+  <g transform="translate(80,76)">
+    <rect x="0"  y="42" width="9"  height="48" fill="#00C7FD"/>
+    <rect x="14" y="30" width="9"  height="72" fill="#00C7FD"/>
+    <rect x="28" y="18" width="9"  height="96" fill="#FFD900"/>
+    <rect x="42" y="6"  width="11" height="120" fill="#FF0A64"/>
+    <rect x="58" y="12" width="9"  height="108" fill="#FF00C8"/>
+    <rect x="72" y="22" width="9"  height="88" fill="#FF00C8"/>
+    <rect x="86" y="34" width="9"  height="64" fill="#FF00C8"/>
+    <rect x="100" y="46" width="9" height="40" fill="#FF00C8"/>
+  </g>
+
+  <text x="226" y="116" font-family="Inter, -apple-system, sans-serif"
+        font-weight="700" font-size="44" fill="#ffffff">MPact Capital</text>
+  <text x="226" y="156" font-family="Inter, -apple-system, sans-serif"
+        font-weight="500" font-size="16" letter-spacing="3" fill="#5BDDFF">SEC REGISTERED INVESTMENT ADVISER</text>
+
+  <text x="80" y="330" font-family="Georgia, serif" font-weight="600"
+        font-size="78" fill="#ffffff">Financial tools of</text>
+  <text x="80" y="420" font-family="Georgia, serif" font-weight="600"
+        font-size="78" fill="#ffffff"><tspan fill="#FF00C8">dignity</tspan>, built for <tspan fill="#FF7B1C">people</tspan>.</text>
+
+  <text x="80" y="490" font-family="Inter, sans-serif" font-weight="500"
+        font-size="22" fill="#F2EBFF" opacity="0.88">
+    Asset &amp; Investment Management · Capital Market Solutions · Digital Finance Infrastructure
+  </text>
+
+  <g transform="translate(80,540)">
+    <rect width="200" height="44" rx="22" fill="#FF00C8"/>
+    <text x="100" y="29" text-anchor="middle" font-family="Inter, sans-serif"
+          font-weight="700" font-size="16" fill="#ffffff">mpactcap.com</text>
+  </g>
+</svg>
