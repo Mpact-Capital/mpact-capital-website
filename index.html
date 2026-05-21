@@ -792,6 +792,17 @@
       font-size: 18px; line-height: 1; font-weight: 600;
     }
     .info-modal-card .modal-close:hover { background: rgba(255, 0, 200, 0.12); color: var(--magenta); }
+    .info-modal-card .info-status {
+      margin: 0; font-size: 13px; line-height: 1.4;
+      padding: 10px 12px; border-radius: 8px; min-height: 1em;
+    }
+    .info-modal-card .info-status:empty { padding: 0; }
+    .info-modal-card .info-status.ok {
+      background: rgba(0, 199, 253, 0.08); color: #054FA8; border: 1px solid rgba(0, 199, 253, 0.30);
+    }
+    .info-modal-card .info-status.warn {
+      background: rgba(255, 123, 28, 0.10); color: #8a4500; border: 1px solid rgba(255, 123, 28, 0.40);
+    }
     .info-modal-card .info-foot {
       margin-top: 16px; font-size: 12px; color: var(--slate-500); line-height: 1.5;
     }
@@ -1540,21 +1551,67 @@
     document.querySelectorAll('[data-info-close]').forEach((el) =>
       el.addEventListener('click', (e) => { e.preventDefault(); closeInfoModal(); })
     );
-    infoForm?.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if (!infoForm.reportValidity()) return;
-      const fd = new FormData(infoForm);
+    // Inquiry submission — POSTs to the platform's /api/inquiry route on
+    // portal.mpactcap.com, which sends the message via Postmark to
+    // info@mpactcap.com. If the network call fails (offline, CORS, or
+    // the platform is briefly down), we fall back to the visitor's local
+    // mail client via a pre-filled mailto: link so we never silently
+    // lose a lead.
+    const INQUIRY_ENDPOINT = 'https://portal.mpactcap.com/api/inquiry';
+    function mailtoFallback(payload) {
       const labels = { name: 'Name', email: 'Email', employer: 'Employer', title: 'Title', type: 'Contacting as', notes: 'Notes' };
       const lines = [];
-      for (const [k, v] of fd.entries()) {
-        const value = String(v).trim();
-        if (!value) continue;
-        lines.push(`${labels[k] || k}: ${value}`);
+      for (const k of ['name', 'email', 'employer', 'title', 'type', 'notes']) {
+        const v = String(payload[k] ?? '').trim();
+        if (v) lines.push(`${labels[k]}: ${v}`);
       }
-      const name = String(fd.get('name') || '').trim();
-      const subject = name ? `Request for information — ${name}` : 'Request for information';
-      const body = `${lines.join('\n')}\n\n—\nSent via mpactcap.com`;
+      const subject = payload.name ? `Request for information — ${payload.name}` : 'Request for information';
+      const body = `${lines.join('\n')}\n\n—\nSent via mpactcap.com (fallback path)`;
       window.location.href = `mailto:info@mpactcap.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+    infoForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!infoForm.reportValidity()) return;
+
+      const submitBtn = infoForm.querySelector('button[type="submit"]');
+      const statusEl = document.getElementById('infoStatus');
+      const fd = new FormData(infoForm);
+      const payload = {
+        name: String(fd.get('name') || '').trim(),
+        email: String(fd.get('email') || '').trim(),
+        employer: String(fd.get('employer') || '').trim(),
+        title: String(fd.get('title') || '').trim(),
+        type: String(fd.get('type') || '').trim(),
+        notes: String(fd.get('notes') || '').trim(),
+      };
+
+      const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+      if (statusEl) { statusEl.textContent = ''; statusEl.className = 'info-status'; }
+
+      try {
+        const res = await fetch(INQUIRY_ENDPOINT, {
+          method: 'POST',
+          mode: 'cors',
+          credentials: 'omit',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json().catch(() => null);
+        if (!res.ok || !data?.ok) {
+          throw new Error(data?.error || `Request failed (${res.status})`);
+        }
+        // Success — show confirmation and close modal after a short pause.
+        if (statusEl) { statusEl.textContent = 'Message sent — we will respond from info@mpactcap.com within one business day.'; statusEl.className = 'info-status ok'; }
+        infoForm.reset();
+        setTimeout(closeInfoModal, 2200);
+      } catch (err) {
+        // Soft fall-back: open user's mail client with the message pre-filled.
+        if (statusEl) { statusEl.textContent = 'Couldn’t send through the portal — opening your email client as a backup.'; statusEl.className = 'info-status warn'; }
+        setTimeout(() => mailtoFallback(payload), 600);
+      } finally {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = originalBtnHtml; }
+      }
     });
 
     // Privacy / Terms modal — both footer links open the same "contact us" card
@@ -1643,6 +1700,7 @@
           <button type="submit" class="btn btn-primary">Send Request <span class="arrow">→</span></button>
           <button type="button" class="btn btn-outline" data-info-close>Cancel</button>
         </div>
+        <p id="infoStatus" class="info-status" role="status" aria-live="polite"></p>
         <p class="info-foot">By submitting this form, you consent to MPact Capital using the information you provide to respond to your inquiry. We do not sell personal information. See our privacy practices for more.</p>
       </form>
     </div>
