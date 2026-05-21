@@ -631,6 +631,80 @@
     .policy-modal-card .modal-close:hover { background: rgba(255, 0, 200, 0.12); color: var(--magenta); }
 
     /* ============================================================
+       Request-information modal — submits via mailto to info@mpactcap.com
+       ============================================================ */
+    .info-modal {
+      position: fixed; inset: 0; z-index: 210;
+      display: none; align-items: center; justify-content: center;
+      background: rgba(10, 8, 32, 0.78);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      padding: 20px; overflow-y: auto;
+    }
+    .info-modal.open { display: flex; }
+    .info-modal-card {
+      background: #fff; color: var(--ink-800);
+      border-radius: var(--radius-lg);
+      max-width: 560px; width: 100%;
+      padding: 36px;
+      box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6);
+      position: relative;
+      max-height: calc(100vh - 40px); overflow-y: auto;
+    }
+    .info-modal-card .eyebrow { color: var(--magenta); margin-bottom: 14px; }
+    .info-modal-card h3 {
+      font-family: var(--font-display); font-weight: 600;
+      font-size: 1.6rem; margin: 0 0 8px; letter-spacing: -0.01em;
+    }
+    .info-modal-card > p {
+      color: var(--slate-700); font-size: 14px; margin: 0 0 22px;
+    }
+    .info-modal-card form { display: flex; flex-direction: column; gap: 14px; }
+    .info-modal-card .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .info-modal-card label {
+      display: flex; flex-direction: column; gap: 5px;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.04em;
+      text-transform: uppercase; color: var(--slate-700);
+    }
+    .info-modal-card label.required::after { content: " *"; color: var(--magenta); }
+    .info-modal-card input,
+    .info-modal-card select,
+    .info-modal-card textarea {
+      font: inherit; font-weight: 400; text-transform: none; letter-spacing: 0;
+      border: 1px solid rgba(21, 15, 51, 0.18); border-radius: 10px;
+      padding: 10px 12px; color: var(--ink-800);
+      background: var(--cream-50); font-size: 14px;
+      width: 100%; box-sizing: border-box;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+    .info-modal-card input:focus,
+    .info-modal-card select:focus,
+    .info-modal-card textarea:focus {
+      outline: 2px solid var(--magenta); outline-offset: 1px;
+      background: #fff; border-color: var(--magenta);
+    }
+    .info-modal-card textarea { resize: vertical; min-height: 80px; font-family: var(--font-sans); }
+    .info-modal-card .form-actions {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px;
+    }
+    .info-modal-card .form-actions .btn { padding: 12px 22px; font-size: 14px; }
+    .info-modal-card .modal-close {
+      position: absolute; top: 14px; right: 14px;
+      width: 36px; height: 36px; border-radius: 10px;
+      background: var(--cream-100); border: 0;
+      color: var(--ink-800); cursor: pointer;
+      display: grid; place-items: center;
+      font-size: 18px; line-height: 1; font-weight: 600;
+    }
+    .info-modal-card .modal-close:hover { background: rgba(255, 0, 200, 0.12); color: var(--magenta); }
+    .info-modal-card .info-foot {
+      margin-top: 16px; font-size: 12px; color: var(--slate-500); line-height: 1.5;
+    }
+    @media (max-width: 520px) {
+      .info-modal-card { padding: 26px; }
+      .info-modal-card .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
        Mobile nav
        ============================================================ */
     .mobile-nav {
@@ -805,7 +879,7 @@
 
           <div class="hero-ctas">
             <a class="btn btn-primary btn-lg" data-login="client" href="#">Open the Platform <span class="arrow">→</span></a>
-            <a class="btn btn-ghost btn-lg" href="#contact">Request an Introduction</a>
+            <a class="btn btn-ghost btn-lg" href="#" data-info-modal>Request an Introduction</a>
           </div>
 
           <div class="hero-meta">
@@ -1218,6 +1292,7 @@
           <span class="eyebrow">Get in touch</span>
           <h2>Talk to us about programmatic capital, housing finance, or platform access.</h2>
           <p class="lead">For introductions, partnership inquiries, or platform onboarding, reach our principal directly. We respond within one business day.</p>
+          <a class="btn btn-primary btn-lg" href="#" data-info-modal style="margin-top:8px;">Request Information <span class="arrow">→</span></a>
         </div>
         <div class="contact-card">
           <div class="contact-row">
@@ -1332,6 +1407,43 @@
     );
 
     document.getElementById('year').textContent = new Date().getFullYear();
+    // Request-information modal — opens from any [data-info-modal] element
+    const infoModal = document.getElementById('infoModal');
+    const infoForm = document.getElementById('infoForm');
+    document.querySelectorAll('[data-info-modal]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        infoModal.classList.add('open');
+        infoModal.setAttribute('aria-hidden', 'false');
+        // Focus first field for keyboard users
+        setTimeout(() => infoModal.querySelector('input[name="name"]')?.focus(), 100);
+      });
+    });
+    function closeInfoModal() {
+      infoModal.classList.remove('open');
+      infoModal.setAttribute('aria-hidden', 'true');
+    }
+    infoModal?.addEventListener('click', (e) => { if (e.target === infoModal) closeInfoModal(); });
+    document.querySelectorAll('[data-info-close]').forEach((el) =>
+      el.addEventListener('click', (e) => { e.preventDefault(); closeInfoModal(); })
+    );
+    infoForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!infoForm.reportValidity()) return;
+      const fd = new FormData(infoForm);
+      const labels = { name: 'Name', email: 'Email', employer: 'Employer', title: 'Title', type: 'Contacting as', notes: 'Notes' };
+      const lines = [];
+      for (const [k, v] of fd.entries()) {
+        const value = String(v).trim();
+        if (!value) continue;
+        lines.push(`${labels[k] || k}: ${value}`);
+      }
+      const name = String(fd.get('name') || '').trim();
+      const subject = name ? `Request for information — ${name}` : 'Request for information';
+      const body = `${lines.join('\n')}\n\n—\nSent via mpactcap.com`;
+      window.location.href = `mailto:info@mpactcap.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+
     // Privacy / Terms modal — both footer links open the same "contact us" card
     const policyModal = document.getElementById('policyModal');
     document.querySelectorAll('[data-policy-modal]').forEach((el) => {
@@ -1349,11 +1461,66 @@
     document.querySelectorAll('[data-policy-close]').forEach((el) =>
       el.addEventListener('click', (e) => { e.preventDefault(); closePolicyModal(); })
     );
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePolicyModal(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { closePolicyModal(); closeInfoModal(); }
+    });
   </script>
 
   <!-- Brand watermark — fixed-position ghost across the back of the page -->
   <div class="page-watermark" aria-hidden="true"></div>
+
+  <!-- Request-information modal -->
+  <div class="info-modal" id="infoModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="infoModalTitle">
+    <div class="info-modal-card">
+      <button class="modal-close" data-info-close aria-label="Close">×</button>
+      <span class="eyebrow">Request information</span>
+      <h3 id="infoModalTitle">Tell us about yourself</h3>
+      <p>Share a few details and we'll respond from <strong>info@mpactcap.com</strong> within one business day. Submitting opens your email client with the message pre-filled — review and send.</p>
+      <form id="infoForm" novalidate>
+        <div class="form-row">
+          <label class="required">Name
+            <input type="text" name="name" autocomplete="name" required />
+          </label>
+          <label class="required">Email
+            <input type="email" name="email" autocomplete="email" inputmode="email" required />
+          </label>
+        </div>
+        <div class="form-row">
+          <label class="required">Employer
+            <input type="text" name="employer" autocomplete="organization" required />
+          </label>
+          <label class="required">Title
+            <input type="text" name="title" autocomplete="organization-title" required />
+          </label>
+        </div>
+        <label class="required">I'm contacting MPact as a&hellip;
+          <select name="type" required>
+            <option value="">Select an option&hellip;</option>
+            <option>Institutional Investor</option>
+            <option>Family Office</option>
+            <option>Foundation or Endowment</option>
+            <option>Pension Fund / Plan Sponsor</option>
+            <option>Wealth or Investment Adviser</option>
+            <option>Real Estate Developer or Sponsor</option>
+            <option>Mission-Aligned Bank or Lender</option>
+            <option>Government / Public-Sector Partner</option>
+            <option>Technology / Infrastructure Partner</option>
+            <option>Existing MPact Client</option>
+            <option>Press / Media</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label>Notes (optional)
+          <textarea name="notes" placeholder="Briefly describe what you'd like to discuss"></textarea>
+        </label>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Send Request <span class="arrow">→</span></button>
+          <button type="button" class="btn btn-outline" data-info-close>Cancel</button>
+        </div>
+        <p class="info-foot">By submitting this form, you consent to MPact Capital using the information you provide to respond to your inquiry. We do not sell personal information. See our privacy practices for more.</p>
+      </form>
+    </div>
+  </div>
 
   <!-- Privacy / Terms modal -->
   <div class="policy-modal" id="policyModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="policyModalTitle">
