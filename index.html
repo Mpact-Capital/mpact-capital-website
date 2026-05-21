@@ -585,7 +585,50 @@
     .foot-col a:hover { opacity: 1; color: var(--magenta); }
     .foot-legal { border-top: 1px solid var(--border-dark); padding-top: 24px; display: flex; gap: 16px; flex-wrap: wrap; justify-content: space-between; align-items: center; font-size: 12px; opacity: 0.75; }
     .foot-legal .links { display: flex; gap: 18px; flex-wrap: wrap; }
-    .foot-disclaimer { font-size: 12px; opacity: 0.55; margin-top: 18px; line-height: 1.6; max-width: 900px; }
+    .foot-disclaimer { font-size: 12px; opacity: 0.65; margin-top: 22px; line-height: 1.6; max-width: 900px; }
+    .foot-disclaimer p { margin: 0 0 12px; }
+    .foot-disclaimer p:last-child { margin-bottom: 0; }
+
+    /* ============================================================
+       Legal-policy modal — privacy & terms link to a "contact us" modal
+       ============================================================ */
+    .policy-modal {
+      position: fixed; inset: 0; z-index: 200;
+      display: none; align-items: center; justify-content: center;
+      background: rgba(10, 8, 32, 0.78);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 20px;
+    }
+    .policy-modal.open { display: flex; }
+    .policy-modal-card {
+      background: #fff; color: var(--ink-800);
+      border-radius: var(--radius-lg);
+      max-width: 480px; width: 100%;
+      padding: 36px;
+      box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6);
+      position: relative;
+    }
+    .policy-modal-card .eyebrow { color: var(--magenta); margin-bottom: 14px; }
+    .policy-modal-card h3 {
+      font-family: var(--font-display); font-weight: 600;
+      font-size: 1.6rem; margin: 0 0 14px; letter-spacing: -0.01em;
+    }
+    .policy-modal-card p {
+      color: var(--slate-700); font-size: 15px; line-height: 1.6; margin: 0 0 14px;
+    }
+    .policy-modal-card .modal-actions {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px;
+    }
+    .policy-modal-card .modal-close {
+      position: absolute; top: 14px; right: 14px;
+      width: 36px; height: 36px; border-radius: 10px;
+      background: var(--cream-100); border: 0;
+      color: var(--ink-800); cursor: pointer;
+      display: grid; place-items: center;
+      font-size: 18px; line-height: 1; font-weight: 600;
+    }
+    .policy-modal-card .modal-close:hover { background: rgba(255, 0, 200, 0.12); color: var(--magenta); }
 
     /* ============================================================
        Mobile nav
@@ -1233,15 +1276,19 @@
       <div class="foot-legal">
         <span>&copy; <span id="year">2026</span> MPact Capital, LLC. All rights reserved. &nbsp;·&nbsp; CRD #335008 &nbsp;·&nbsp; SEC #801-135352</span>
         <div class="links">
-          <a href="privacy.html">Privacy Policy</a>
-          <a href="terms.html">Terms &amp; Conditions</a>
+          <a href="#" data-policy-modal>Privacy Policy</a>
+          <a href="#" data-policy-modal>Terms &amp; Conditions</a>
           <a href="https://adviserinfo.sec.gov/firm/summary/335008" target="_blank" rel="noopener">Form ADV ↗</a>
         </div>
       </div>
 
-      <p class="foot-disclaimer">
-        The information contained herein is not an offer to sell, or a solicitation of an offer to buy, any securities and is qualified in its entirety by the more complete information, including risks of investment, provided by MPact Capital, LLC, in its sole discretion, to certain qualified investors who meet certain investor criteria. There are no guarantees that we will achieve any of our investment objectives, and investment results may vary substantially over time. MPact Capital, LLC ("MPC") is an investment adviser registered with the U.S. Securities and Exchange Commission (CRD&nbsp;#335008, SEC&nbsp;#801-135352). Registration does not imply a certain level of skill or training. The firm's Form&nbsp;ADV brochure is available on the SEC's Investment Adviser Public Disclosure system at <a href="https://adviserinfo.sec.gov/firm/summary/335008" target="_blank" rel="noopener" style="color:var(--cyan-400);">adviserinfo.sec.gov/firm/summary/335008</a>.
-      </p>
+      <div class="foot-disclaimer">
+        <p>The information contained herein is not an offer to sell, or a solicitation of an offer to buy, any securities and is qualified in its entirety by the more complete information, including risks of investment, provided by MPact Capital, LLC, in its sole discretion, to certain qualified investors who meet certain investor criteria. Offerings of securities are made only pursuant to definitive offering documents and only in jurisdictions where such offers are lawful.</p>
+        <p>MPact Capital, LLC ("MPC") is an investment adviser registered with the U.S. Securities and Exchange Commission (CRD&nbsp;#335008, SEC&nbsp;#801-135352). Registration does not imply a certain level of skill or training. The firm's Form&nbsp;ADV brochure is available on the SEC's Investment Adviser Public Disclosure system at <a href="https://adviserinfo.sec.gov/firm/summary/335008" target="_blank" rel="noopener" style="color:var(--cyan-400);">adviserinfo.sec.gov/firm/summary/335008</a>.</p>
+        <p>Nothing on this website constitutes personalized investment, legal, tax, or accounting advice. The information is general in nature and does not take into account any prospective or current client's specific objectives, financial situation, or needs. Prospective and current clients should consult their own qualified advisers before acting on any information presented here. MPC does not act as a fiduciary unless it has expressly agreed to do so in writing with the client.</p>
+        <p>All investments involve risk, including possible loss of principal. Past performance is not indicative of, and does not guarantee, future results. There are no assurances that any investment objective will be achieved, and investment results may vary substantially over time. Any forward-looking statements reflect current views as of the date hereof and are subject to risks, uncertainties, and assumptions that could cause actual outcomes to differ materially; such statements should not be relied upon as predictions of future events.</p>
+        <p>Hypothetical, target, model, or back-tested performance, where shown, has inherent limitations, does not reflect actual trading, and does not capture the impact of material economic and market factors on decision-making. Information from third-party sources is believed to be reliable but has not been independently verified by MPC. This site may contain links to external websites; MPC is not responsible for the content or practices of any third-party sites.</p>
+      </div>
     </div>
   </footer>
 
@@ -1254,9 +1301,10 @@
     // by user_type after AAL2, so Staff and Client share a single
     // /login URL. A ?role= hint is appended for optional copy switching.
     const CONFIG = {
-      LOGIN_URL: 'http://localhost:3000/login',
-      // LOGIN_URL: 'https://portal.mpactcap.com/login',
-      // LOGIN_URL: 'https://mpact-fund-management.vercel.app/login',
+      // Production target: deploy the mpact-fund-management Next.js app to Vercel
+      // and point portal.mpactcap.com (Namecheap CNAME) at it. Until that's live,
+      // these buttons will fail to resolve — flip to a working URL when ready.
+      LOGIN_URL: 'https://portal.mpactcap.com/login',
     };
 
     document.querySelectorAll('[data-login]').forEach((el) => {
@@ -1285,9 +1333,42 @@
     );
 
     document.getElementById('year').textContent = new Date().getFullYear();
+    // Privacy / Terms modal — both footer links open the same "contact us" card
+    const policyModal = document.getElementById('policyModal');
+    document.querySelectorAll('[data-policy-modal]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        policyModal.classList.add('open');
+        policyModal.setAttribute('aria-hidden', 'false');
+      });
+    });
+    function closePolicyModal() {
+      policyModal.classList.remove('open');
+      policyModal.setAttribute('aria-hidden', 'true');
+    }
+    policyModal?.addEventListener('click', (e) => { if (e.target === policyModal) closePolicyModal(); });
+    document.querySelectorAll('[data-policy-close]').forEach((el) =>
+      el.addEventListener('click', (e) => { e.preventDefault(); closePolicyModal(); })
+    );
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePolicyModal(); });
   </script>
 
   <!-- Brand watermark — fixed-position ghost across the back of the page -->
   <div class="page-watermark" aria-hidden="true"></div>
+
+  <!-- Privacy / Terms modal -->
+  <div class="policy-modal" id="policyModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="policyModalTitle">
+    <div class="policy-modal-card">
+      <button class="modal-close" data-policy-close aria-label="Close">×</button>
+      <span class="eyebrow">Legal</span>
+      <h3 id="policyModalTitle">Privacy Policy &amp; Terms &amp; Conditions</h3>
+      <p>Our formal Privacy Policy and Terms &amp; Conditions are being finalized with counsel. For a current copy, or to ask a question about how MPact Capital handles your information, please contact us by email.</p>
+      <p style="font-weight:600;color:var(--ink-800);">Email <a href="mailto:info@mpactcap.com" style="color:var(--magenta);">info@mpactcap.com</a> and we'll respond within one business day.</p>
+      <div class="modal-actions">
+        <a class="btn btn-primary" href="mailto:info@mpactcap.com?subject=Privacy%20Policy%20%26%20Terms%20Request">Email info@mpactcap.com</a>
+        <button class="btn btn-outline" data-policy-close>Close</button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
