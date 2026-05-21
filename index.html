@@ -24,7 +24,15 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+  <!-- Non-blocking Google Fonts: load as 'print', then swap to 'all' on load.
+       If the CDN is blocked (Brave Shields aggressive, ad-block, etc.) the
+       page still renders with the system-font fallback in the font-family stack. -->
+  <link rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" />
+  <noscript>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" />
+  </noscript>
 
   <style>
     /* ============================================================
@@ -1531,9 +1539,10 @@
     );
 
     document.getElementById('year').textContent = new Date().getFullYear();
+    try {
     // Request-information modal — opens from any [data-info-modal] element
-    const infoModal = document.getElementById('infoModal');
-    const infoForm = document.getElementById('infoForm');
+    var infoModal = document.getElementById('infoModal');
+    var infoForm = document.getElementById('infoForm');
     document.querySelectorAll('[data-info-modal]').forEach((el) => {
       el.addEventListener('click', (e) => {
         e.preventDefault();
@@ -1616,24 +1625,30 @@
 
     // Privacy / Terms modal — both footer links open the same "contact us" card
     const policyModal = document.getElementById('policyModal');
-    document.querySelectorAll('[data-policy-modal]').forEach((el) => {
-      el.addEventListener('click', (e) => {
-        e.preventDefault();
-        policyModal.classList.add('open');
-        policyModal.setAttribute('aria-hidden', 'false');
+    if (policyModal) {
+      document.querySelectorAll('[data-policy-modal]').forEach(function (el) {
+        el.addEventListener('click', function (e) {
+          e.preventDefault();
+          policyModal.classList.add('open');
+          policyModal.setAttribute('aria-hidden', 'false');
+        });
       });
-    });
+    }
     function closePolicyModal() {
+      if (!policyModal) return;
       policyModal.classList.remove('open');
       policyModal.setAttribute('aria-hidden', 'true');
     }
-    policyModal?.addEventListener('click', (e) => { if (e.target === policyModal) closePolicyModal(); });
-    document.querySelectorAll('[data-policy-close]').forEach((el) =>
-      el.addEventListener('click', (e) => { e.preventDefault(); closePolicyModal(); })
-    );
-    document.addEventListener('keydown', (e) => {
+    if (policyModal) {
+      policyModal.addEventListener('click', function (e) { if (e.target === policyModal) closePolicyModal(); });
+    }
+    document.querySelectorAll('[data-policy-close]').forEach(function (el) {
+      el.addEventListener('click', function (e) { e.preventDefault(); closePolicyModal(); });
+    });
+    document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') { closePolicyModal(); closeInfoModal(); }
     });
+    } catch (e) { /* swallow */ }
     });
   </script>
 
