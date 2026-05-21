@@ -711,22 +711,42 @@
     .info-modal-card textarea {
       font: inherit; font-weight: 400; text-transform: none; letter-spacing: 0;
       border: 1px solid rgba(21, 15, 51, 0.18); border-radius: 10px;
-      padding: 10px 12px; color: var(--ink-800);
+      padding: 11px 13px; color: var(--ink-800);
       background: var(--cream-50); font-size: 14px;
       width: 100%; box-sizing: border-box;
-      transition: border-color 0.15s ease, background 0.15s ease;
+      transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
     }
+    .info-modal-card select { appearance: none; -webkit-appearance: none; cursor: pointer;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%2318112E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='1,1.5 6,6.5 11,1.5'/></svg>");
+      background-repeat: no-repeat; background-position: right 14px center;
+      padding-right: 36px; }
+    .info-modal-card select:hover { background-color: #fff; border-color: rgba(21, 15, 51, 0.3); }
+    .info-modal-card optgroup {
+      font-weight: 700; font-size: 12px;
+      color: var(--magenta); background: var(--cream-50);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding-top: 6px;
+    }
+    .info-modal-card option { font-weight: 400; font-size: 14px; color: var(--ink-800); text-transform: none; letter-spacing: 0; background: #fff; padding: 4px 0; }
     .info-modal-card input:focus,
     .info-modal-card select:focus,
     .info-modal-card textarea:focus {
-      outline: 2px solid var(--magenta); outline-offset: 1px;
-      background: #fff; border-color: var(--magenta);
+      outline: none; border-color: var(--magenta);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(255, 0, 200, 0.18);
+    }
+    .info-modal-card input:invalid:not(:placeholder-shown),
+    .info-modal-card select:invalid:not([data-no-validate]),
+    .info-modal-card textarea:invalid:not(:placeholder-shown) {
+      /* keep silent — browser will show on submit */
     }
     .info-modal-card textarea { resize: vertical; min-height: 80px; font-family: var(--font-sans); }
     .info-modal-card .form-actions {
-      display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px;
+      display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px;
+      padding-top: 18px; border-top: 1px solid rgba(21, 15, 51, 0.08);
     }
     .info-modal-card .form-actions .btn { padding: 12px 22px; font-size: 14px; }
+    .info-modal-card .form-actions .btn-primary { flex: 1 1 auto; }
     .info-modal-card .modal-close {
       position: absolute; top: 14px; right: 14px;
       width: 36px; height: 36px; border-radius: 10px;
@@ -1572,22 +1592,34 @@
         <label class="required">I'm contacting MPact as a&hellip;
           <select name="type" required>
             <option value="">Select an option&hellip;</option>
-            <option>Institutional Investor</option>
-            <option>Family Office</option>
-            <option>Foundation or Endowment</option>
-            <option>Pension Fund / Plan Sponsor</option>
-            <option>Wealth or Investment Adviser</option>
-            <option>Real Estate Developer or Sponsor</option>
-            <option>Mission-Aligned Bank or Lender</option>
-            <option>Government / Public-Sector Partner</option>
-            <option>Technology / Infrastructure Partner</option>
-            <option>Existing MPact Client</option>
-            <option>Press / Media</option>
-            <option>Other</option>
+            <optgroup label="Capital Allocators &amp; Investors">
+              <option>Institutional Investor</option>
+              <option>Family Office</option>
+              <option>Foundation or Endowment</option>
+              <option>Pension Fund / Plan Sponsor</option>
+              <option>Wealth or Investment Adviser</option>
+            </optgroup>
+            <optgroup label="Public Sector">
+              <option>Municipality</option>
+              <option>Government Agency</option>
+              <option>Housing Finance Agency (HFA) / Public Housing Authority (PHA)</option>
+            </optgroup>
+            <optgroup label="Lending &amp; Real Estate">
+              <option>Mission-Aligned Bank or Lender</option>
+              <option>Community Lender (CDFI / MDI)</option>
+              <option>Real Estate Developer or Sponsor</option>
+              <option>Place-Based Vendor</option>
+            </optgroup>
+            <optgroup label="Other Relationships">
+              <option>Technology / Infrastructure Partner</option>
+              <option>Existing MPact Client</option>
+              <option>Press / Media</option>
+              <option>Other</option>
+            </optgroup>
           </select>
         </label>
-        <label>Notes (optional)
-          <textarea name="notes" placeholder="Briefly describe what you'd like to discuss"></textarea>
+        <label>How can we help? (optional)
+          <textarea name="notes" placeholder="Briefly describe what you'd like to discuss — e.g. partnership inquiry, platform access, CHIF allocation, capital-markets engagement&hellip;"></textarea>
         </label>
         <div class="form-actions">
           <button type="submit" class="btn btn-primary">Send Request <span class="arrow">→</span></button>
