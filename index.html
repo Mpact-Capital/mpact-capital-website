@@ -428,42 +428,74 @@
     .feature:nth-child(5) .feature-icon { background: rgba(255, 10, 100, 0.18); color: var(--red-pink); }
     .feature:nth-child(6) .feature-icon { background: rgba(91, 221, 255, 0.18); color: var(--cyan-400); }
 
-    /* Security &amp; compliance posture strip — full list of controls/certs */
+    /* Right column of platform section: compliance strip + Client Login CTA */
+    .platform-side { display: flex; flex-direction: column; gap: 22px; }
+
+    /* Security &amp; compliance posture strip */
     .compliance-strip {
-      margin-top: 28px;
-      padding: 24px 26px;
-      background: rgba(255, 255, 255, 0.04);
+      padding: 26px 28px;
+      background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--border-dark);
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-lg);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
     .compliance-strip h4 {
       font-family: var(--font-sans); font-weight: 700;
       font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--cyan-400); margin: 0 0 16px;
+      color: var(--cyan-400); margin: 0 0 18px;
     }
     .compliance-strip ul {
       list-style: none; padding: 0; margin: 0;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 10px 22px;
+      display: flex; flex-direction: column; gap: 10px;
     }
     .compliance-strip ul li {
-      font-size: 13px; color: var(--cloud-100); opacity: 0.86;
+      font-size: 13px; color: var(--cloud-100); opacity: 0.88;
       padding-left: 20px; position: relative; line-height: 1.5;
     }
     .compliance-strip ul li::before {
       content: ""; position: absolute; left: 0; top: 0.55em;
-      width: 9px; height: 9px; border-radius: 50%;
+      width: 8px; height: 8px; border-radius: 50%;
       background: var(--cyan-400); opacity: 0.85;
     }
     .compliance-strip ul li a { color: var(--cyan-400); }
     .compliance-strip ul li a:hover { color: #fff; }
     .compliance-note {
-      margin: 18px 0 0; font-size: 11px; color: var(--cloud-100);
-      opacity: 0.6; line-height: 1.5;
+      margin: 18px 0 0; padding-top: 16px;
+      border-top: 1px solid var(--border-dark);
+      font-size: 11px; color: var(--cloud-100); opacity: 0.6; line-height: 1.5;
     }
+
+    /* Client Login CTA card (below compliance posture) */
+    .platform-cta {
+      padding: 26px 28px;
+      background:
+        radial-gradient(400px 240px at 80% 0%, rgba(255, 0, 200, 0.28), transparent 60%),
+        linear-gradient(135deg, rgba(255, 0, 200, 0.12), rgba(255, 123, 28, 0.06));
+      border: 1px solid var(--magenta);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 14px 36px -12px rgba(255, 0, 200, 0.35);
+    }
+    .platform-cta h3 {
+      font-family: var(--font-display); font-weight: 600;
+      font-size: 22px; color: #fff; margin: 0 0 8px;
+      letter-spacing: -0.01em;
+    }
+    .platform-cta p {
+      color: var(--cloud-100); opacity: 0.86;
+      font-size: 14px; margin: 0 0 18px; line-height: 1.55;
+    }
+    .platform-cta .btn { width: 100%; justify-content: center; box-shadow: 0 8px 24px -8px rgba(255, 0, 200, 0.55); }
+    .platform-cta .btn:hover { box-shadow: 0 12px 28px -8px rgba(255, 0, 200, 0.7); }
+    .platform-cta-foot {
+      margin-top: 16px; display: flex; align-items: center; gap: 8px;
+      font-size: 11px; color: var(--cloud-100); opacity: 0.6;
+    }
+    .platform-cta-foot svg { flex-shrink: 0; }
+
     @media (max-width: 780px) {
-      .compliance-strip ul { grid-template-columns: 1fr; }
-      .compliance-strip { padding: 20px; }
+      .compliance-strip { padding: 22px; }
+      .platform-cta { padding: 22px; }
     }
     .feature h4 { font-family: var(--font-sans); font-weight: 700; font-size: 15px; color: #fff; margin: 0 0 4px; letter-spacing: -0.005em; }
     .feature p { font-size: 14px; margin: 0; color: var(--cloud-100); opacity: 0.78; }
@@ -1088,10 +1120,10 @@
          ============================================================ -->
     <section id="platform" class="platform on-dark">
       <div class="wrap platform-grid">
-        <div>
+        <div class="platform-main">
           <span class="eyebrow">MPact Asset Management Platform</span>
           <h2 style="color:#fff;">Institutional-grade portal with auditable, SEC-aligned controls.</h2>
-          <p class="lead">Purpose-built for an SEC-registered investment adviser. Staff and SMA clients monitor portfolios, impact, and reporting on infrastructure designed to meet the controls expected of registrants under Reg S-P, Reg S-ID, and the SEC's cybersecurity risk-management rules.</p>
+          <p class="lead">Purpose-built for an SEC-registered investment adviser. Staff and SMA clients monitor portfolios, impact, and reporting on infrastructure designed to meet the controls expected of registrants under Reg&nbsp;S-P, Reg&nbsp;S-ID, the SEC's cybersecurity risk-management rules, and the evolving regulatory framework for digital asset custody, safekeeping, and disclosure.</p>
 
           <div class="feature-list">
             <div class="feature">
@@ -1114,15 +1146,6 @@
             </div>
             <div class="feature">
               <div class="feature-icon" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 14h18M9 4v16"/></svg>
-              </div>
-              <div>
-                <h4>Row-level security at the database</h4>
-                <p>Authorization enforced by Postgres RLS policies at the database layer, not just in app code. SMA clients only see their own Pact — independently auditable.</p>
-              </div>
-            </div>
-            <div class="feature">
-              <div class="feature-icon" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
               </div>
               <div>
@@ -1139,24 +1162,18 @@
                 <p>Multi-party computation gating for treasury and disbursement workflows. No single user can move material capital alone; every approval is logged.</p>
               </div>
             </div>
-            <div class="feature">
-              <div class="feature-icon" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l3 3 7-7"/><path d="M11 12l3 3 7-7"/></svg>
-              </div>
-              <div>
-                <h4>Portfolio + impact, side by side</h4>
-                <p>Financial performance alongside ICMA- and SDG-aligned impact metrics for CHIF and every Pact — purpose-built for institutional impact reporting.</p>
-              </div>
-            </div>
           </div>
+        </div>
 
+        <aside class="platform-side">
           <div class="compliance-strip">
             <h4>Security &amp; compliance posture</h4>
             <ul>
               <li>SEC-registered investment adviser — CRD&nbsp;#335008, SEC&nbsp;#801-135352</li>
               <li>SOC&nbsp;2 Type&nbsp;II-audited hosting infrastructure</li>
-              <li>Designed in alignment with Reg&nbsp;S-P (privacy), Reg&nbsp;S-ID (identity theft), and the SEC's cybersecurity risk-management rules</li>
-              <li>TLS 1.3 in transit · AES-256 at rest</li>
+              <li>Designed in alignment with Reg&nbsp;S-P, Reg&nbsp;S-ID, and the SEC's cybersecurity risk-management rules</li>
+              <li>Built to evolve with the SEC's framework for digital asset custody, safekeeping, and disclosure</li>
+              <li>TLS 1.3 in transit &middot; AES-256 at rest</li>
               <li>Mandatory TOTP multi-factor authentication for every account</li>
               <li>Row-level security (RLS) enforced at the database layer</li>
               <li>Append-only audit log retained per SEC Rule 204-2</li>
@@ -1165,32 +1182,17 @@
               <li>Multi-party computation gating on treasury and disbursement workflows</li>
               <li>Form ADV filed with the SEC and publicly available on <a href="https://adviserinfo.sec.gov/firm/summary/335008" target="_blank" rel="noopener">adviserinfo.sec.gov</a></li>
             </ul>
-            <p class="compliance-note">Specific certifications, controls, and policies referenced above reflect MPact Capital's intended security posture and the platform's underlying infrastructure. Active certifications and most-recent attestation reports are available to qualified institutional clients on request.</p>
+            <p class="compliance-note">References reflect MPact Capital's intended security posture and the platform's underlying infrastructure. Active certifications and most-recent attestation reports are available to qualified institutional clients on request.</p>
           </div>
-        </div>
 
-        <aside class="login-chooser">
-          <h3>Sign in to MPact</h3>
-          <p class="sub">Both routes lead to the same secure portal.</p>
-          <div class="login-options">
-            <a class="login-option" data-login="staff" href="#" aria-label="Staff login">
-              <div class="lo-icon" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
-              </div>
-              <strong>Staff Login</strong>
-              <span class="desc">PMs, analysts, IR &amp; admin.</span>
-            </a>
-            <a class="login-option" data-login="client" href="#" aria-label="Client login">
-              <div class="lo-icon" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
-              </div>
-              <strong>Client Login</strong>
-              <span class="desc">SMA clients &amp; authorized investors. Read-only access to your Pact.</span>
-            </a>
-          </div>
-          <div class="login-foot">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            Supabase Auth · TOTP MFA · row-level security
+          <div class="platform-cta">
+            <h3>Sign in to your Pact</h3>
+            <p>SMA clients and authorized investors &mdash; read-only access to portfolios, statements, and impact reports.</p>
+            <a class="btn btn-primary btn-lg" data-login="client" href="#">Client Login <span class="arrow">&rarr;</span></a>
+            <div class="platform-cta-foot">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              Supabase Auth &middot; TOTP MFA &middot; row-level security
+            </div>
           </div>
         </aside>
       </div>
