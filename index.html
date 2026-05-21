@@ -272,6 +272,29 @@
     .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
     .hero-meta { margin-top: 40px; display: flex; gap: 28px; flex-wrap: wrap; font-size: 13px; color: var(--cloud-100); opacity: 0.7; }
 
+    /* Brand mantra — italic serif signature line, replaces the old meta row */
+    .brand-mantra {
+      display: inline-flex; align-items: center; gap: 14px;
+      margin: 40px 0 0;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      color: var(--gold-400);
+      letter-spacing: 0.005em;
+      line-height: 1.4;
+    }
+    .brand-mantra .mantra-rule {
+      display: inline-block;
+      width: 42px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-500));
+      flex-shrink: 0;
+    }
+    @media (max-width: 520px) {
+      .brand-mantra { margin-top: 28px; }
+      .brand-mantra .mantra-rule { width: 28px; }
+    }
+
     /* Hero visual: platform preview card */
     .hero-card { position: relative; perspective: 1400px; }
     .platform-preview {
@@ -1010,11 +1033,10 @@
             <a class="btn btn-ghost btn-lg" href="#" data-info-modal>Request an Introduction</a>
           </div>
 
-          <div class="hero-meta">
-            <span>Charlotte, NC</span>
-            <span>SEC&nbsp;RIA</span>
-            <span>Mutualism in every mandate</span>
-          </div>
+          <p class="brand-mantra">
+            <span class="mantra-rule" aria-hidden="true"></span>
+            Mutualism in every mandate.
+          </p>
         </div>
 
         <div class="hero-card">
