@@ -1,82 +1,125 @@
 # MPact Capital — mpactcap.com
 
-Refreshed marketing site for MPact Capital, LLC. Single-file static site
-(no build step) that doubles as the front door to the **MPact Asset
-Management Platform** — the Next.js + Supabase app in
+Production marketing site for MPact Capital, LLC. Single-file static
+site (no build step) that doubles as the front door to the **MPact
+Asset Management Platform** — the Next.js + Supabase app in
 `C:\Users\token\mpact-fund-management` (a.k.a. "Lighthouse").
 
-Brand colors, logo, and section copy/bios mirror the live site
-(mpactcap.com /divisions, /team, /advisory-board, /news).
+- **Live URL (after DNS):** https://mpactcap.com/
+- **GitHub Pages URL:** https://mpact-capital.github.io/mpact-capital-website/
+- **Repo:** [Mpact-Capital/mpact-capital-website](https://github.com/Mpact-Capital/mpact-capital-website)
 
 ## Layout
 
 ```
 mpact-capital-website/
-├─ index.html                         ← the whole site, single file
-├─ CNAME                              ← mpactcap.com (GitHub Pages)
+├─ index.html              ← the whole site, single file
+├─ privacy.html            ← Privacy Policy stub
+├─ terms.html              ← Terms & Conditions stub
+├─ sitemap.xml             ← search-engine sitemap
+├─ robots.txt              ← crawler config
+├─ CNAME                   ← mpactcap.com (GitHub Pages custom domain)
 ├─ assets/
-│   ├─ mpact-logo.svg                 ← real logo from MPC Media Files
-│   ├─ mpact-logo-transparent.png     ← transparent-bg variant
-│   ├─ mpact-logo-transparent-2.png   ← alt transparent variant
-│   ├─ marcus-martin.jpg              ← Marcus's headshot
-│   ├─ favicon.svg                    ← vertical bar mark
-│   └─ og-image.svg                   ← 1200×630 social card
+│   ├─ mpact-logo.svg          ← real stacked logo
+│   ├─ mpact-mark.svg          ← bar-mark only (favicon + topbar)
+│   ├─ favicon.svg
+│   ├─ og-image.svg
+│   ├─ marcus-martin.jpg / milena-kohlhofer.png / amari-sherrill.png
+│   ├─ jim-kelligrew.jpg / julie-bernard.png / euclid-walker.jpg
+│   ├─ partner-avalanche.svg / partner-homium.svg / partner-hedera.svg
+│   └─ mpact-logo-transparent[-2].png
 └─ README.md
 ```
 
-## Headshots to add
+## Going live — DNS at Namecheap
 
-Drop these JPGs into `assets/` and the site will pick them up automatically —
-the initials avatars are placeholders styled to match the brand:
+The repo, `CNAME` file, and GitHub Pages custom domain are already
+configured to serve `mpactcap.com`. The only remaining step is
+pointing the domain's DNS at GitHub Pages.
 
-- `milena-kohlhofer.jpg`
-- `amari-sherrill.jpg`
-- `jim-kelligrew.jpg`
-- `julie-bernard.jpg`
-- `euclid-walker.jpg`
+### Steps in Namecheap (BasicDNS)
 
-When you have a file, update the corresponding `<div class="person-photo" aria-hidden="true">INITIALS</div>`
-in `index.html` to:
+1. **Domain List → Manage → Advanced DNS** for `mpactcap.com`.
+2. **Delete** any existing records that point at Google Sites
+   (typically a CNAME on `@` and `www` to `ghs.googlehosted.com` or
+   similar).
+3. **Add 4 A records on `@`** (the apex), each with TTL Automatic:
 
-```html
-<div class="person-photo"><img src="assets/milena-kohlhofer.jpg" alt="Milena Kohlhofer"/></div>
-```
+   | Type | Host | Value             |
+   | ---- | ---- | ----------------- |
+   | A    | @    | 185.199.108.153   |
+   | A    | @    | 185.199.109.153   |
+   | A    | @    | 185.199.110.153   |
+   | A    | @    | 185.199.111.153   |
 
-…and remove the matching `<div class="photo-note">Drop assets/… </div>` line below the bio.
+4. **Add `www` CNAME**:
 
-## View locally
+   | Type  | Host | Value                          |
+   | ----- | ---- | ------------------------------ |
+   | CNAME | www  | mpact-capital.github.io.       |
 
-Open `index.html` directly in a browser, or:
+   (Trailing dot optional — Namecheap accepts either.)
 
-```bash
-npx serve .
-# or
-python -m http.server 8000
-```
+5. Save changes. Propagation: 5 minutes to a few hours.
+6. After DNS resolves, GitHub Pages will issue a free Let's Encrypt
+   cert. Then enable HTTPS-only:
+
+   ```bash
+   "/c/Program Files/GitHub CLI/gh.exe" api -X PUT \
+     repos/Mpact-Capital/mpact-capital-website/pages \
+     -f cname=mpactcap.com -F https_enforced=true
+   ```
+
+7. Verify build:
+
+   ```bash
+   "/c/Program Files/GitHub CLI/gh.exe" api \
+     repos/Mpact-Capital/mpact-capital-website/pages/builds/latest --jq .status
+   # want "built"
+   ```
+
+### Expected downtime
+
+There will be a few-minute window during DNS flip where the apex
+points at GitHub Pages but the cert hasn't issued. The Google Sites
+version becomes unreachable as soon as DNS propagates. Plan the cut
+during off-hours if that matters.
 
 ## Wire the Staff / Client login
 
-Both login buttons hit the same `/login` — the fund-management app
-routes by `user_type` after AAL2 (STAFF → `/dashboard`, CLIENT →
-`/portal`). Buttons append `?role=staff|client` so login copy can vary
-if desired.
-
-**Swap the URL in one place** — `CONFIG.LOGIN_URL` near the bottom of
-`index.html`:
+Login buttons go to `CONFIG.LOGIN_URL` (search `index.html`):
 
 ```js
 const CONFIG = {
-  LOGIN_URL: 'http://localhost:3000/login',          // dev
-  // LOGIN_URL: 'https://portal.mpactcap.com/login', // prod (suggested)
+  LOGIN_URL: 'http://localhost:3000/login',          // dev (current)
+  // LOGIN_URL: 'https://portal.mpactcap.com/login', // suggested prod
   // LOGIN_URL: 'https://mpact-fund-management.vercel.app/login',
 };
 ```
 
-Recommended: deploy `mpact-fund-management` to Vercel and point
-`portal.mpactcap.com` (Namecheap CNAME) at it. The marketing site on
-the apex `mpactcap.com` then deep-links into `portal.mpactcap.com/login`.
+Both Staff and Client buttons hit the same `/login` URL — the
+fund-management app routes by `user_type` after AAL2
+(STAFF → `/dashboard`, CLIENT → `/portal`). The button click appends
+`?role=staff|client` so login copy can vary if desired.
 
-## Brand system (from the real MpactCapital.svg logo)
+**Update when:** the `mpact-fund-management` Next.js app is deployed
+to Vercel. Suggested path: deploy to Vercel, point
+`portal.mpactcap.com` (Namecheap CNAME) at the Vercel deployment,
+then change `CONFIG.LOGIN_URL` to `https://portal.mpactcap.com/login`,
+commit + push. Pages rebuilds in ~1–2 min.
+
+## Edit workflow
+
+```bash
+cd C:/Users/token/mpact-capital-website
+# edit index.html / etc.
+git add -A
+git commit -m "your message"
+git push origin main
+# Pages rebuilds in ~1–2 min
+```
+
+## Brand system
 
 | Token            | Hex         | Used for                                |
 | ---------------- | ----------- | --------------------------------------- |
@@ -86,47 +129,38 @@ the apex `mpactcap.com` then deep-links into `portal.mpactcap.com/login`.
 | `--magenta`      | `#FF00C8`   | M wordmark / primary CTA                |
 | `--magenta-700`  | `#C30099`   | Magenta hover                           |
 | `--orange`       | `#FF7B1C`   | "Pact" wordmark / secondary CTA         |
-| `--orange-400`   | `#FFA45C`   | Orange hover / accent on dark           |
 | `--cyan`         | `#00C7FD`   | "Capital" wordmark / info & links       |
-| `--cyan-400`     | `#5BDDFF`   | Cyan accent on dark                     |
 | `--yellow`       | `#FFD900`   | Sparing accent (dot, gradient)          |
 | `--red-pink`     | `#FF0A64`   | Sparing accent                          |
-| `--blue`         | `#054FA8`   | Deep cool accent                        |
 | `--cream-50`     | `#FFF8F2`   | Light section background                |
-| `--cream-100`    | `#FBEFE2`   | Warm secondary light background         |
 
-Typography: **Fraunces** (display serif) + **Inter** (UI/body), both via
-Google Fonts.
+Typography: **Fraunces** (display serif) + **Inter** (UI/body),
+both via Google Fonts.
 
-## Deploy (GitHub Pages — mirrors the Foundation site setup)
+## Regulatory
 
-Mpactfoundation.org uses this exact pattern.
+- CRD #335008
+- SEC #801-135352
+- Form ADV (firm-specific IAPD page) is linked in the footer:
+  https://adviserinfo.sec.gov/firm/summary/335008
 
-1. Create repo `Mpact-Capital/mpact-capital-website` (public — required
-   for free Pages).
-2. Push:
-   ```bash
-   git remote add origin https://github.com/Mpact-Capital/mpact-capital-website.git
-   git push -u origin main
-   ```
-3. GitHub → repo → Settings → Pages → Source: `main` / root.
-4. Custom domain: `mpactcap.com` (CNAME file is already in the repo).
-5. Namecheap DNS for `mpactcap.com`:
-   - 4 × A records on `@` pointing at GitHub Pages IPs:
-     `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-   - `www` CNAME → `mpact-capital.github.io`
-6. Wait ~1–2 min; verify:
-   ```bash
-   "/c/Program Files/GitHub CLI/gh.exe" api \
-     repos/Mpact-Capital/mpact-capital-website/pages/builds/latest --jq .status
-   ```
-7. Enforce HTTPS in Pages settings once the cert provisions.
+## Source of content
 
-## Source for the verbatim content
+- Divisions, team bios, advisory bios: from mpactcap.com sub-pages
+- News items: ImpactAlpha, EIN Presswire, ESG Dive, Economic Architecture
+  Project, PR Newswire, Yahoo Finance — links in the News section
+- Logo + transparents: `G:\Shared drives\MPC Logo & Media Files\
+  Logo & Media Files\`
+- Partner logos: Avalanche (cryptologos.cc), Hedera (cryptologos.cc),
+  Homium (typeset locally — drop a real SVG into
+  `assets/partner-homium.svg` to override)
 
-- Divisions section → mpactcap.com/divisions
-- Team bios → mpactcap.com/team
-- Advisory Board bios → mpactcap.com/advisory-board
-- News items → mpactcap.com/news
-- Logo + transparents → `G:\Shared drives\MPC Logo & Media Files\Logo & Media Files\`
-- Marcus headshot → `…\Partner Bios & Pics\MM_bio_pic_MPC.jpg`
+## Outstanding before launch
+
+- [ ] DNS pointed at GitHub Pages (manual, see above)
+- [ ] Enable HTTPS-only after cert provisions
+- [ ] Update `CONFIG.LOGIN_URL` to the deployed dashboard URL
+- [ ] Replace draft Privacy Policy and Terms with attorney-reviewed
+      versions
+- [ ] (Optional) Add real article links for `#` news entries if any
+      remain
