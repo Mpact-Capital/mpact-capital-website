@@ -1477,6 +1477,12 @@
        JS — login routing + mobile nav + year
        ============================================================ -->
   <script>
+    // Wait for the DOM to finish parsing before wiring up handlers — the
+    // request-information modal (#infoModal) and the privacy/terms modal
+    // (#policyModal) are declared AFTER this script in the source order,
+    // so document.getElementById(...) on either would return null at
+    // script-parse time and every CTA click would throw silently.
+    document.addEventListener('DOMContentLoaded', function () {
     // CONFIG — swap LOGIN_URL when the MPact Asset Management Platform
     // (mpact-fund-management / "Lighthouse") is deployed. The app routes
     // by user_type after AAL2, so Staff and Client share a single
@@ -1570,6 +1576,7 @@
     );
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') { closePolicyModal(); closeInfoModal(); }
+    });
     });
   </script>
 
