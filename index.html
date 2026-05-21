@@ -409,7 +409,11 @@
         radial-gradient(600px 360px at 0% 100%, rgba(255, 0, 200, 0.2), transparent 70%);
       pointer-events: none;
     }
+    .platform-header { max-width: 880px; margin: 0 0 48px; }
     .platform-grid { position: relative; display: grid; grid-template-columns: 1fr 1.05fr; gap: 64px; align-items: center; }
+    @media (max-width: 1024px) {
+      .platform-header { margin-bottom: 32px; }
+    }
     .feature-list { display: grid; gap: 16px; margin-top: 24px; }
     .feature {
       display: grid; grid-template-columns: 44px 1fr; gap: 16px; align-items: start;
@@ -1129,13 +1133,16 @@
          Platform (Lighthouse / Asset Management Portal)
          ============================================================ -->
     <section id="platform" class="platform on-dark">
-      <div class="wrap platform-grid">
-        <div class="platform-main">
+      <div class="wrap">
+        <div class="platform-header">
           <span class="eyebrow">MPact Asset Management Platform</span>
           <h2 style="color:#fff;">Institutional-grade portal with auditable, SEC-aligned controls.</h2>
           <p class="lead">Purpose-built for an SEC-registered investment adviser. Staff and SMA clients monitor portfolios, impact, and reporting on infrastructure designed to meet the controls expected of registrants under Reg&nbsp;S-P, Reg&nbsp;S-ID, the SEC's cybersecurity risk-management rules, and the evolving regulatory framework for digital asset custody, safekeeping, and disclosure.</p>
+        </div>
 
-          <div class="feature-list">
+        <div class="platform-grid">
+          <div class="platform-main">
+            <div class="feature-list">
             <div class="feature">
               <div class="feature-icon" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
@@ -1196,7 +1203,8 @@
             <a class="btn btn-primary btn-lg" data-login="client" href="#">Client Login <span class="arrow">&rarr;</span></a>
           </div>
         </aside>
-      </div>
+        </div><!-- /.platform-grid -->
+      </div><!-- /.wrap -->
     </section>
 
     <!-- ============================================================
