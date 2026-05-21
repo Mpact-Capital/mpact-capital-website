@@ -176,6 +176,34 @@
     .nav a:hover { opacity: 1; background: rgba(255,255,255,0.08); color: #fff; }
     .nav-cta { display: flex; gap: 10px; margin-left: auto; align-items: center; flex-shrink: 0; }
 
+    /* Site switcher — pill that mirrors the one on portal.mpactcap.com.
+       Same CSS class names on both surfaces; the `.site-toggle-current`
+       state is the visually filled "you are here" segment. */
+    .site-toggle {
+      display: inline-flex; align-items: center; gap: 0;
+      padding: 3px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase; line-height: 1;
+    }
+    .site-toggle-link, .site-toggle-current {
+      display: inline-flex; align-items: center;
+      padding: 6px 12px;
+      border-radius: 999px;
+      color: rgba(242, 235, 255, 0.72);
+      white-space: nowrap;
+    }
+    .site-toggle-link {
+      text-decoration: none;
+      transition: color 0.15s ease, background 0.15s ease;
+    }
+    .site-toggle-link:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+    .site-toggle-current { background: #fff; color: var(--ink-800); cursor: default; }
+    /* On mobile, hide the toggle so the hamburger / login CTAs get room. */
+    @media (max-width: 760px) { .site-toggle { display: none; } }
+
     /* Site switcher — toggle between the landing page (this site) and the
        authenticated portal (portal.mpactcap.com). Same component sits on
        both sites; "current" segment is highlighted, the other navigates. */
@@ -1039,6 +1067,10 @@
       </nav>
 
       <div class="nav-cta">
+        <nav class="site-toggle" aria-label="Site switcher">
+          <span class="site-toggle-current" aria-current="page">Landing</span>
+          <a class="site-toggle-link" href="https://portal.mpactcap.com">Portal</a>
+        </nav>
         <a class="btn btn-ghost" data-login="staff" href="#">Staff Login</a>
         <a class="btn btn-primary" data-login="client" href="#">Client Login <span class="arrow">→</span></a>
       </div>
