@@ -417,6 +417,17 @@
       content: ""; position: absolute; left: 0; top: 0.55em;
       width: 12px; height: 2px; background: var(--magenta); border-radius: 2px;
     }
+    /* Inline links inside card body copy — magenta with underline */
+    .div-card .inline-link,
+    .div-card p .inline-link {
+      color: var(--magenta);
+      font-weight: 600;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      transition: color 0.15s ease;
+    }
+    .div-card .inline-link:hover { color: var(--magenta-700); }
     .div-card .tag {
       display: inline-block; align-self: flex-start;
       font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
@@ -1110,7 +1121,7 @@
             </div>
             <span class="tag">MPC Asset Management</span>
             <h3>Core Housing Impact Fund (CHIF)</h3>
-            <p>MPC curates customizable separately managed accounts (SMA aka "Pacts") tailored to our client's target impact-return profile. This novel approach offers optimized exposure to home price appreciation (HPA) through investments in Homium and other tokenized fixed income and liquid yielding assets.</p>
+            <p>MPC curates customizable separately managed accounts (SMA aka "Pacts") tailored to our client's target impact-return profile. This novel approach offers optimized exposure to home price appreciation (HPA) through investments in <a href="https://explore.homium.io" target="_blank" rel="noopener" class="inline-link">Homium</a> and other tokenized fixed income and liquid yielding assets.</p>
             <ul>
               <li>Pacts are governed by a custom Investment &amp; Impact Management Agreement (IIMA) for superior transparency, real-time monitoring &amp; reporting, and greater control of investment and impact outcomes — with mutualism in every mandate.</li>
             </ul>
