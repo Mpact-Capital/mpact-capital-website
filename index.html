@@ -413,6 +413,42 @@
     }
     .pp-pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
 
+    /* Hero visual: sample SMA/Pact statement (illustrative — not a real report) */
+    .stmt-preview {
+      position: relative; background: #fff; color: var(--slate-900);
+      border-radius: var(--radius-lg); padding: 22px 22px 18px;
+      box-shadow: var(--shadow-lg); transform: rotate(-1deg); overflow: hidden;
+    }
+    .stmt-grad { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--magenta), var(--orange) 50%, var(--cyan)); }
+    .stmt-sample {
+      position: absolute; top: 15px; right: 16px;
+      background: rgba(255,0,200,0.10); color: var(--magenta-700); border: 1px solid rgba(255,0,200,0.30);
+      font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 4px 9px; border-radius: 999px;
+    }
+    .stmt-mast { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+    .stmt-brand { display: flex; align-items: center; gap: 9px; }
+    .stmt-mark img { height: 24px; width: auto; display: block; }
+    .stmt-bn { font-size: 14px; font-weight: 700; color: var(--ink-800); }
+    .stmt-bs { font-size: 8px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--slate-500); margin-top: 1px; }
+    .stmt-period { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--magenta-700); }
+    .stmt-rule { height: 1px; background: var(--border-soft); margin: 14px 0 12px; }
+    .stmt-title { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--ink-800); line-height: 1.1; }
+    .stmt-sub { font-size: 11px; color: var(--slate-500); margin-top: 3px; }
+    .stmt-tiles { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin: 14px 0 4px; }
+    .stmt-tile { border: 1px solid var(--border-soft); border-radius: 10px; padding: 9px 10px; }
+    .stmt-tl { font-size: 8px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate-500); }
+    .stmt-tv { font-family: var(--font-display); font-size: 17px; font-weight: 600; color: var(--ink-800); margin-top: 3px; }
+    .stmt-tv.up { color: #0F7D3D; }
+    .stmt-fuzz { filter: blur(4px); -webkit-filter: blur(4px); user-select: none; -webkit-user-select: none; pointer-events: none; }
+    .stmt-sec { display: flex; align-items: center; gap: 6px; margin: 12px 0 7px; }
+    .stmt-tick { width: 3px; height: 12px; border-radius: 2px; background: var(--magenta); }
+    .stmt-slabel { font-size: 8px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate-500); }
+    .stmt-chart { width: 100%; height: 54px; display: block; }
+    .stmt-bar { display: flex; height: 9px; border-radius: 5px; overflow: hidden; background: #ece8f2; }
+    .stmt-bar span { display: block; height: 100%; }
+    .stmt-foot { font-size: 8.5px; color: var(--slate-300); margin-top: 12px; }
+
     .hero-chip {
       position: absolute; right: -10px; bottom: -28px;
       background: var(--grad-warm); color: #fff;
@@ -1000,6 +1036,7 @@
       .mobile-nav { top: 73px; }
       .hero { padding: 56px 0 72px; }
       .platform-preview { transform: none; padding: 18px; }
+      .stmt-preview { transform: none; padding: 18px; }
       .pp-row { gap: 10px; }
       .login-chooser { padding: 24px; }
       .feature { padding: 14px; grid-template-columns: 38px 1fr; gap: 12px; }
@@ -1140,33 +1177,39 @@
         </div>
 
         <div class="hero-card">
-          <div class="platform-preview" role="img" aria-label="MPact Platform preview">
-            <div class="pp-head">
-              <span class="pp-dot"></span><span class="pp-dot"></span><span class="pp-dot"></span>
-              <span class="pp-title">MPact Asset Management Platform</span>
-            </div>
-            <div class="pp-row">
-              <div class="pp-tile">
-                <div class="label">Client Assets</div>
-                <div class="value"><span class="pp-fuzz">$12.4MM</span></div>
-                <div class="delta up"><span class="pp-fuzz">+4.38%</span> YTD</div>
-              </div>
-              <div class="pp-tile">
-                <div class="label">Target Return</div>
-                <div class="value"><span class="pp-fuzz">6.0%</span></div>
-                <div class="delta">CHIF benchmark</div>
-              </div>
-            </div>
-            <div class="pp-tile">
-              <div style="display:flex;justify-content:space-between;align-items:center;">
+          <div class="stmt-preview" role="img" aria-label="Sample MPact Capital SMA/Pact account statement — illustrative, not a real report">
+            <div class="stmt-grad"></div>
+            <span class="stmt-sample">Sample</span>
+            <div class="stmt-mast">
+              <div class="stmt-brand">
+                <span class="stmt-mark"><img src="assets/mpact-mark.svg" alt="" /></span>
                 <div>
-                  <div class="label">Impact Performance</div>
-                  <div class="value"><span class="pp-fuzz">118</span> New First-Time Homeowners</div>
+                  <div class="stmt-bn">MPact Capital</div>
+                  <div class="stmt-bs">Account Statement</div>
                 </div>
-                <span class="pp-pill">Live</span>
               </div>
-              <div class="pp-chart" aria-hidden="true"></div>
+              <div class="stmt-period">FY 2025</div>
             </div>
+            <div class="stmt-rule"></div>
+            <div class="stmt-title">Lighthouse Foundation — Pact</div>
+            <div class="stmt-sub">Core Housing Impact Fund · USD · SMA</div>
+            <div class="stmt-tiles">
+              <div class="stmt-tile"><div class="stmt-tl">Net Asset Value</div><div class="stmt-tv stmt-fuzz">$5.41M</div></div>
+              <div class="stmt-tile"><div class="stmt-tl">Return</div><div class="stmt-tv up stmt-fuzz">+8.0%</div></div>
+              <div class="stmt-tile"><div class="stmt-tl">Holdings</div><div class="stmt-tv stmt-fuzz">4</div></div>
+            </div>
+            <div class="stmt-sec"><span class="stmt-tick"></span><span class="stmt-slabel">Performance · NAV trend</span></div>
+            <svg class="stmt-chart" viewBox="0 0 320 54" preserveAspectRatio="none" aria-hidden="true">
+              <defs><linearGradient id="stmtNav" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#FF00C8" stop-opacity="0.22"/><stop offset="1" stop-color="#FF00C8" stop-opacity="0.02"/>
+              </linearGradient></defs>
+              <path d="M2,39 L42,34 L82,37 L122,25 L162,29 L202,18 L242,22 L282,11 L316,7 L316,54 L2,54 Z" fill="url(#stmtNav)"/>
+              <path d="M2,39 L42,34 L82,37 L122,25 L162,29 L202,18 L242,22 L282,11 L316,7" fill="none" stroke="#FF00C8" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round"/>
+              <circle cx="316" cy="7" r="3" fill="#FF00C8"/>
+            </svg>
+            <div class="stmt-sec"><span class="stmt-tick"></span><span class="stmt-slabel">Allocation · by cost basis</span></div>
+            <div class="stmt-bar"><span style="width:52%;background:#10B981"></span><span style="width:28%;background:#F59E0B"></span><span style="width:14%;background:#3B82F6"></span><span style="width:6%;background:#6366F1"></span></div>
+            <div class="stmt-foot">Illustrative sample — not a real report. Figures shown are not actual results.</div>
           </div>
           <div class="hero-chip">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 L15 8 L22 9 L17 14 L18 21 L12 18 L6 21 L7 14 L2 9 L9 8 Z"/></svg>

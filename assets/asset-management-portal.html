@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MPact Asset Management Portal — preview graphic (saved)</title>
+  <!--
+    SAVED ASSET: the original "Asset Management Platform" dashboard preview
+    that fronted the homepage hero, preserved here when the hero was
+    switched to a sample statement mockup. Self-contained + reusable.
+    Figures are illustrative.
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" />
+  <style>
+    :root {
+      --ink-800: #150F33; --ink-900: #0A0820;
+      --magenta: #FF00C8; --orange: #FF7B1C; --cyan: #00C7FD;
+      --cyan-400: #5BDDFF; --orange-400: #FFA45C; --red-pink: #FF0A64; --yellow: #FFD900;
+      --cloud-100: #F2EBFF;
+      --border-dark: rgba(255, 255, 255, 0.10);
+      --radius-lg: 22px; --radius-md: 14px;
+      --shadow-lg: 0 30px 60px -20px rgba(10, 8, 32, 0.45);
+      --font-display: 'Fraunces', Georgia, serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 60px;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      background:
+        radial-gradient(900px 520px at 100% -8%, rgba(255,0,200,0.18), transparent 58%),
+        radial-gradient(820px 520px at -8% 6%, rgba(0,199,253,0.14), transparent 55%),
+        var(--ink-900);
+      display: flex; justify-content: center;
+    }
+    .frame { width: 440px; }
+    .platform-preview {
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02));
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-lg);
+      transform: rotate(-1deg);
+      backdrop-filter: blur(12px);
+    }
+    .pp-head { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+    .pp-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--red-pink); opacity: 0.8; }
+    .pp-dot:nth-child(2) { background: var(--yellow); }
+    .pp-dot:nth-child(3) { background: var(--cyan); }
+    .pp-title { margin-left: 8px; font-size: 12px; color: var(--cloud-100); opacity: 0.75; letter-spacing: 0.08em; text-transform: uppercase; }
+    .pp-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .pp-tile { background: rgba(21, 15, 51, 0.55); border: 1px solid var(--border-dark); border-radius: var(--radius-md); padding: 14px; }
+    .pp-tile .label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan-400); }
+    .pp-tile .value { font-family: var(--font-display); font-size: 22px; color: #fff; margin-top: 4px; font-weight: 600; }
+    .pp-tile .delta { font-size: 12px; color: var(--orange-400); margin-top: 2px; }
+    .pp-tile .delta.up { color: var(--cyan-400); }
+    .pp-chart {
+      height: 78px; margin-top: 8px;
+      background: linear-gradient(180deg, rgba(255,0,200,0.35), rgba(255,123,28,0.25) 60%, rgba(0,199,253,0) 100%);
+      mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 80' preserveAspectRatio='none'><polyline points='0,60 20,52 40,58 60,40 80,46 100,30 120,36 140,22 160,28 180,14 200,18' fill='none' stroke='black' stroke-width='3'/></svg>");
+      -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 80' preserveAspectRatio='none'><polyline points='0,60 20,52 40,58 60,40 80,46 100,30 120,36 140,22 160,28 180,14 200,18' fill='none' stroke='black' stroke-width='3'/></svg>");
+      mask-size: 100% 100%; -webkit-mask-size: 100% 100%;
+    }
+    .pp-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px; border-radius: 999px;
+      background: rgba(0, 199, 253, 0.18); color: var(--cyan-400);
+      font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .pp-pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <div class="platform-preview" role="img" aria-label="MPact Asset Management Platform preview">
+      <div class="pp-head">
+        <span class="pp-dot"></span><span class="pp-dot"></span><span class="pp-dot"></span>
+        <span class="pp-title">MPact Asset Management Platform</span>
+      </div>
+      <div class="pp-row">
+        <div class="pp-tile">
+          <div class="label">Client Assets</div>
+          <div class="value">$12.4MM</div>
+          <div class="delta up">+4.38% YTD</div>
+        </div>
+        <div class="pp-tile">
+          <div class="label">Target Return</div>
+          <div class="value">6.0%</div>
+          <div class="delta">CHIF benchmark</div>
+        </div>
+      </div>
+      <div class="pp-tile">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <div class="label">Impact Performance</div>
+            <div class="value">118 New First-Time Homeowners</div>
+          </div>
+          <span class="pp-pill">Live</span>
+        </div>
+        <div class="pp-chart"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
