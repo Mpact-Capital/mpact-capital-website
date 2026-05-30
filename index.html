@@ -971,6 +971,12 @@
     }
     @media (max-width: 1024px) {
       .nav { display: none; }
+      /* Below desktop the primary nav collapses into the hamburger; the
+         login buttons + hamburger already crowd this range, so drop the
+         header site-toggle here (the mobile drawer keeps its own toggle,
+         and the login buttons link to the portal). Prevents the header
+         from overflowing between ~780–1024px. */
+      .nav-cta .site-toggle { display: none; }
       .hero-grid, .platform-grid, .mission-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
       .divs-grid { grid-template-columns: 1fr 1fr; }
       .people-grid { grid-template-columns: 1fr 1fr; }
