@@ -387,6 +387,16 @@
     .pp-tile .value { font-family: var(--font-display); font-size: 22px; color: #fff; margin-top: 4px; font-weight: 600; }
     .pp-tile .delta { font-size: 12px; color: var(--orange-400); margin-top: 2px; }
     .pp-tile .delta.up { color: var(--cyan-400); }
+    /* Illustrative preview: blur the live data so specific figures aren't
+       advertised — viewers see a working dashboard, not readable numbers. */
+    .pp-fuzz {
+      display: inline-block;
+      filter: blur(5px);
+      -webkit-filter: blur(5px);
+      user-select: none;
+      -webkit-user-select: none;
+      pointer-events: none;
+    }
     .pp-chart {
       height: 78px; margin-top: 8px;
       background: linear-gradient(180deg, rgba(255,0,200,0.35), rgba(255,123,28,0.25) 60%, rgba(0,199,253,0) 100%);
@@ -1132,12 +1142,12 @@
             <div class="pp-row">
               <div class="pp-tile">
                 <div class="label">Client Assets</div>
-                <div class="value">$12.4MM</div>
-                <div class="delta up">+4.38% YTD</div>
+                <div class="value"><span class="pp-fuzz">$12.4MM</span></div>
+                <div class="delta up"><span class="pp-fuzz">+4.38%</span> YTD</div>
               </div>
               <div class="pp-tile">
                 <div class="label">Target Return</div>
-                <div class="value">6.0%</div>
+                <div class="value"><span class="pp-fuzz">6.0%</span></div>
                 <div class="delta">CHIF benchmark</div>
               </div>
             </div>
@@ -1145,7 +1155,7 @@
               <div style="display:flex;justify-content:space-between;align-items:center;">
                 <div>
                   <div class="label">Impact Performance</div>
-                  <div class="value">118 New First-Time Homeowners</div>
+                  <div class="value"><span class="pp-fuzz">118</span> New First-Time Homeowners</div>
                 </div>
                 <span class="pp-pill">Live</span>
               </div>
