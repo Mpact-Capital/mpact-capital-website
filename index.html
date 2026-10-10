@@ -974,16 +974,6 @@
       .nav-cta .btn { padding: 8px 12px; }
     }
 
-    /* Portal tiles (platform section) */
-    .portal-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .portal-tile {
-      display: flex; flex-direction: column; gap: 6px;
-      padding: 18px 20px; border-radius: 16px;
-      background: rgba(255,255,255,0.04); border: 1px solid var(--border-dark);
-    }
-    .portal-tile strong { color: #fff; font-size: 16px; font-weight: 600; }
-    .portal-tile span { color: var(--cloud-100); opacity: 0.78; font-size: 14px; line-height: 1.5; }
-    @media (max-width: 520px) { .portal-tiles { grid-template-columns: 1fr; } }
     @media (max-width: 1024px) {
       .nav { display: none; }
       .hero-grid, .platform-grid, .mission-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -1192,6 +1182,8 @@
         <div class="ribbon-list">
           <a class="partner-chip" href="https://mpactfoundation.org" target="_blank" rel="noopener" aria-label="MPact Mission Foundation"><img src="assets/partner-mpact-foundation.svg" alt="MPact Mission Foundation" width="220" height="280" style="height:42px;" loading="lazy" decoding="async" /></a>
           <a class="partner-chip" href="https://homium.io" target="_blank" rel="noopener" aria-label="Homium"><img src="assets/partner-homium.jpg" alt="Homium" width="256" height="256" style="height:42px;" loading="lazy" decoding="async" /></a>
+          <a class="partner-chip" href="https://www.thebrightway.org" target="_blank" rel="noopener" aria-label="Bright Community Trust"><img src="assets/partner-bright.png" alt="Bright Community Trust" width="134" height="134" style="height:42px;" loading="lazy" decoding="async" /></a>
+          <a class="partner-chip" href="https://www.lisc.org/jacksonville/" target="_blank" rel="noopener" aria-label="LISC Jacksonville"><img src="assets/partner-lisc-jacksonville.png" alt="LISC Jacksonville" width="304" height="69" style="height:28px;" loading="lazy" decoding="async" /></a>
           <a class="partner-chip" href="https://www.avax.network" target="_blank" rel="noopener" aria-label="Avalanche"><img src="assets/partner-avalanche.svg" alt="Avalanche" width="1503" height="1504" style="height:36px;" loading="lazy" decoding="async" /></a>
           <a class="partner-chip" href="https://hedera.com" target="_blank" rel="noopener" aria-label="Hedera"><img src="assets/partner-hedera.svg" alt="Hedera" width="2500" height="2500" style="height:36px;" loading="lazy" decoding="async" /></a>
         </div>
@@ -1285,19 +1277,12 @@
          ============================================================ -->
     <section id="platform" class="platform on-dark">
       <div class="wrap">
-        <div class="platform-header">
-          <span class="eyebrow">MPact Asset Management Platform</span>
-          <h2 style="color:#fff;">Asset Management &amp; Research Portals.</h2>
-          <p class="lead">One entry point for MPact Capital staff, SMA clients and approved research partners &mdash; portfolios, statements, impact reporting and housing-market research, each in its own invite-only portal.</p>
-        </div>
-
         <div class="platform-grid">
           <div class="platform-main">
-            <div class="portal-tiles">
-              <div class="portal-tile"><strong>MPC Employees</strong><span>Clients, SMAs, onboarding, approvals and reporting.</span></div>
-              <div class="portal-tile"><strong>MPC Clients</strong><span>Read-only view of your account, statements and impact.</span></div>
-              <div class="portal-tile"><strong>Research</strong><span>Housing-policy and market research for approved users.</span></div>
-              <div class="portal-tile"><strong>Heirs Data IQ</strong><span>Heirs&rsquo;-property market intelligence for program teams.</span></div>
+            <div class="platform-header" style="margin-bottom:0;">
+              <span class="eyebrow">MPact Asset Management Platform</span>
+              <h2 style="color:#fff;">Secure client &amp; partner portal.</h2>
+              <p class="lead">Clients and partners track portfolios, statements and impact in one secure place.</p>
             </div>
             <!-- SECURITY POSTURE — hidden 2026-10-10 until independently audited.
                  Remove the `hidden` attribute (here and on .compliance-strip below)
@@ -1358,8 +1343,8 @@
           </div>
 
           <div class="platform-cta">
-            <h3>Enter the portal</h3>
-            <p>Choose your portal &mdash; employees, clients, research or Heirs Data IQ &mdash; or start a new-client inquiry.</p>
+            <h3>Already a client or partner?</h3>
+            <p>Sign in to your account.</p>
             <a class="btn btn-primary btn-lg" href="https://portal.mpactcap.com">Enter Portal <span class="arrow">&rarr;</span></a>
           </div>
         </aside>
