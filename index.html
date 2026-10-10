@@ -411,10 +411,34 @@
       font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
       color: var(--cyan-400); white-space: nowrap;
     }
-    .ribbon-list {
-      display: flex; gap: 56px; flex-wrap: wrap;
-      align-items: center; justify-content: center;
-      width: 100%;
+    /* Partners carousel — the logo set is rendered twice and the track slides
+       by exactly one set (-50%), so the loop is seamless. Spacing is a
+       per-chip margin (not flex gap) so both halves are identical widths.
+       Pauses on hover/focus; static, wrapped row under reduced motion. */
+    .ribbon-carousel {
+      width: 100%; overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+              mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    }
+    .ribbon-track {
+      display: flex; align-items: center; width: max-content;
+      padding: 6px 0 10px;
+      animation: partners-scroll 38s linear infinite;
+    }
+    .ribbon-track .partner-chip { margin-right: 56px; flex: none; }
+    .ribbon-carousel:hover .ribbon-track,
+    .ribbon-carousel:focus-within .ribbon-track { animation-play-state: paused; }
+    @keyframes partners-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ribbon-carousel { -webkit-mask-image: none; mask-image: none; }
+      .ribbon-track {
+        animation: none; width: 100%; flex-wrap: wrap; justify-content: center; row-gap: 20px;
+      }
+      .ribbon-track .partner-chip { margin: 0 14px; }
+      .ribbon-track [data-clone] { display: none; }
     }
     .partner-chip {
       display: inline-flex; align-items: center; justify-content: center;
@@ -1009,7 +1033,7 @@
       .cta-strip .actions .btn { flex: 1 1 calc(50% - 6px); justify-content: center; }
       .contact-card { padding: 24px; }
       .ribbon { padding: 36px 0; }
-      .ribbon-list { gap: 28px; }
+      .ribbon-track .partner-chip { margin-right: 32px; }
       .partner-chip { height: 48px; padding: 10px 18px; }
       .partner-chip img { max-width: 140px; }
       /* Mobile: nav-cta is hidden, so hamburger needs to flex to the far right */
@@ -1024,7 +1048,7 @@
       .hero-chip { position: static; margin-top: 16px; display: inline-flex; transform: none; }
       .ribbon { padding: 28px 0; }
       .ribbon-inner { gap: 18px; }
-      .ribbon-list { gap: 18px; }
+      .ribbon-track .partner-chip { margin-right: 22px; }
       .partner-chip { height: 44px; padding: 8px 14px; }
       .partner-chip img { max-width: 110px; }
       .brand-mark { height: 32px; }
@@ -1179,13 +1203,23 @@
     <div class="ribbon">
       <div class="wrap ribbon-inner">
         <span class="ribbon-label">Strategic Partners</span>
-        <div class="ribbon-list">
-          <a class="partner-chip" href="https://mpactfoundation.org" target="_blank" rel="noopener" aria-label="MPact Mission Foundation"><img src="assets/partner-mpact-foundation.svg" alt="MPact Mission Foundation" width="220" height="280" style="height:42px;" loading="lazy" decoding="async" /></a>
-          <a class="partner-chip" href="https://homium.io" target="_blank" rel="noopener" aria-label="Homium"><img src="assets/partner-homium.jpg" alt="Homium" width="256" height="256" style="height:42px;" loading="lazy" decoding="async" /></a>
-          <a class="partner-chip" href="https://www.thebrightway.org" target="_blank" rel="noopener" aria-label="Bright Community Trust"><img src="assets/partner-bright.png" alt="Bright Community Trust" width="134" height="134" style="height:42px;" loading="lazy" decoding="async" /></a>
-          <a class="partner-chip" href="https://www.lisc.org/jacksonville/" target="_blank" rel="noopener" aria-label="LISC Jacksonville"><img src="assets/partner-lisc-jacksonville.png" alt="LISC Jacksonville" width="304" height="69" style="height:28px;" loading="lazy" decoding="async" /></a>
-          <a class="partner-chip" href="https://www.avax.network" target="_blank" rel="noopener" aria-label="Avalanche"><img src="assets/partner-avalanche.svg" alt="Avalanche" width="1503" height="1504" style="height:36px;" loading="lazy" decoding="async" /></a>
-          <a class="partner-chip" href="https://hedera.com" target="_blank" rel="noopener" aria-label="Hedera"><img src="assets/partner-hedera.svg" alt="Hedera" width="2500" height="2500" style="height:36px;" loading="lazy" decoding="async" /></a>
+        <div class="ribbon-carousel" role="region" aria-label="Strategic partners">
+          <div class="ribbon-track">
+            <a class="partner-chip" href="https://mpactfoundation.org" target="_blank" rel="noopener" aria-label="MPact Mission Foundation"><img src="assets/partner-mpact-foundation.svg" alt="MPact Mission Foundation" width="220" height="280" style="height:42px;" loading="lazy" decoding="async" /></a>
+            <a class="partner-chip" href="https://homium.io" target="_blank" rel="noopener" aria-label="Homium"><img src="assets/partner-homium.jpg" alt="Homium" width="256" height="256" style="height:42px;" loading="lazy" decoding="async" /></a>
+            <a class="partner-chip" href="https://www.thebrightway.org" target="_blank" rel="noopener" aria-label="Bright Community Trust"><img src="assets/partner-bright.png" alt="Bright Community Trust" width="134" height="134" style="height:42px;" loading="lazy" decoding="async" /></a>
+            <a class="partner-chip" href="https://www.lisc.org/jacksonville/" target="_blank" rel="noopener" aria-label="LISC Jacksonville"><img src="assets/partner-lisc-jacksonville.png" alt="LISC Jacksonville" width="304" height="69" style="height:28px;" loading="lazy" decoding="async" /></a>
+            <a class="partner-chip" href="https://www.nationalbankers.org" target="_blank" rel="noopener" aria-label="National Bankers Association"><img src="assets/partner-nba.png" alt="National Bankers Association" width="441" height="203" style="height:38px;" loading="lazy" decoding="async" /></a>
+            <a class="partner-chip" href="https://www.avax.network" target="_blank" rel="noopener" aria-label="Avalanche"><img src="assets/partner-avalanche.svg" alt="Avalanche" width="1503" height="1504" style="height:36px;" loading="lazy" decoding="async" /></a>
+            <a class="partner-chip" href="https://hedera.com" target="_blank" rel="noopener" aria-label="Hedera"><img src="assets/partner-hedera.svg" alt="Hedera" width="2500" height="2500" style="height:36px;" loading="lazy" decoding="async" /></a>
+            <a class="partner-chip" data-clone aria-hidden="true" tabindex="-1" href="https://mpactfoundation.org" target="_blank" rel="noopener" data-label="MPact Mission Foundation"><img src="assets/partner-mpact-foundation.svg" alt="MPact Mission Foundation" width="220" height="280" style="height:42px;" loading="lazy" decoding="async" /></a>
+            <a class="partner-chip" data-clone aria-hidden="true" tabindex="-1" href="https://homium.io" target="_blank" rel="noopener" data-label="Homium"><img src="assets/partner-homium.jpg" alt="Homium" width="256" height="256" style="height:42px;" loading="lazy" decoding="async" /></a>
+            <a class="partner-chip" data-clone aria-hidden="true" tabindex="-1" href="https://www.thebrightway.org" target="_blank" rel="noopener" data-label="Bright Community Trust"><img src="assets/partner-bright.png" alt="Bright Community Trust" width="134" height="134" style="height:42px;" loading="lazy" decoding="async" /></a>
+            <a class="partner-chip" data-clone aria-hidden="true" tabindex="-1" href="https://www.lisc.org/jacksonville/" target="_blank" rel="noopener" data-label="LISC Jacksonville"><img src="assets/partner-lisc-jacksonville.png" alt="LISC Jacksonville" width="304" height="69" style="height:28px;" loading="lazy" decoding="async" /></a>
+            <a class="partner-chip" data-clone aria-hidden="true" tabindex="-1" href="https://www.nationalbankers.org" target="_blank" rel="noopener" data-label="National Bankers Association"><img src="assets/partner-nba.png" alt="National Bankers Association" width="441" height="203" style="height:38px;" loading="lazy" decoding="async" /></a>
+            <a class="partner-chip" data-clone aria-hidden="true" tabindex="-1" href="https://www.avax.network" target="_blank" rel="noopener" data-label="Avalanche"><img src="assets/partner-avalanche.svg" alt="Avalanche" width="1503" height="1504" style="height:36px;" loading="lazy" decoding="async" /></a>
+            <a class="partner-chip" data-clone aria-hidden="true" tabindex="-1" href="https://hedera.com" target="_blank" rel="noopener" data-label="Hedera"><img src="assets/partner-hedera.svg" alt="Hedera" width="2500" height="2500" style="height:36px;" loading="lazy" decoding="async" /></a>
+          </div>
         </div>
       </div>
     </div>
