@@ -762,7 +762,11 @@
     .news-meta .sep { width: 4px; height: 4px; background: currentColor; border-radius: 50%; opacity: 0.5; }
     .news-card h3 { color: #fff; font-family: var(--font-display); font-weight: 600; font-size: 19px; margin: 4px 0 0; letter-spacing: -0.005em; line-height: 1.3; }
     .news-card p { font-size: 14px; color: var(--cloud-100); opacity: 0.78; margin: 0; }
-    .news-card .news-link { font-size: 13px; font-weight: 600; color: var(--orange-400); margin-top: 8px; }
+    .news-card .news-link {
+      font-size: 13px; font-weight: 600; color: var(--orange-400); margin-top: 8px;
+      /* ≥44px touch target without changing the visual size */
+      display: inline-flex; align-items: center; min-height: 44px; align-self: flex-start;
+    }
     .news-card .news-link:hover { color: var(--orange); }
 
     /* ============================================================
@@ -1000,10 +1004,36 @@
     /* ============================================================
        Responsive
        ============================================================ */
-    /* Desktop: inline nav + login buttons handle everything — no hamburger or drawer needed */
-    @media (min-width: 1025px) {
+    /* Header layout tiers. Measured widths: brand ≈310px, inline nav ≈490px,
+       site toggle ≈160px, Staff + Client logins ≈255px. Each tier shows only
+       what fits on one row, so nothing is ever pushed past the right edge
+       (the topbar clips overflow):
+         ≥1360px     brand · nav · toggle · logins
+         1200–1359   brand · nav · logins
+         1025–1199   brand · toggle · logins · menu
+         781–1024    brand · logins · menu   (toggle moves into the drawer)
+         ≤780        brand · menu            (logins move into the drawer) */
+    .topbar .wrap { max-width: 1440px; }
+    .nav { margin-left: 16px; }
+    .nav a { padding: 8px 11px; }
+    .nav-cta { gap: 8px; }
+    .nav-cta .btn { padding: 10px 16px; }
+    .nav-cta .site-toggle > * { padding: 6px 11px; font-size: 12px; }
+    .brand-text small { letter-spacing: 0.1em; }
+    /* Safety net: if a tier is ever too tight, the brand caption truncates
+       instead of the login buttons being clipped. */
+    .brand { flex-shrink: 1; }
+    .brand-text, .brand-text small { overflow: hidden; text-overflow: ellipsis; }
+    @media (min-width: 1200px) {
       .hamburger { display: none; }
       .mobile-nav { display: none !important; }
+    }
+    @media (max-width: 1359px) {
+      .nav-cta .site-toggle { display: none; }
+    }
+    @media (max-width: 1199px) {
+      .nav { display: none; }
+      .nav-cta .site-toggle { display: inline-flex; }
     }
     @media (max-width: 1024px) {
       .nav { display: none; }
