@@ -176,70 +176,6 @@
     .nav a:hover { opacity: 1; background: rgba(255,255,255,0.08); color: #fff; }
     .nav-cta { display: flex; gap: 10px; margin-left: auto; align-items: center; flex-shrink: 0; }
 
-    /* Site switcher — pill that mirrors the one on portal.mpactcap.com.
-       Same CSS class names on both surfaces; the `.site-toggle-current`
-       state is the visually filled "you are here" segment. */
-    .site-toggle {
-      display: inline-flex; align-items: center; gap: 0;
-      padding: 3px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 999px;
-      font-size: 11px; font-weight: 600;
-      letter-spacing: 0.06em; text-transform: uppercase; line-height: 1;
-    }
-    .site-toggle-link, .site-toggle-current {
-      display: inline-flex; align-items: center;
-      padding: 6px 12px;
-      border-radius: 999px;
-      color: rgba(242, 235, 255, 0.72);
-      white-space: nowrap;
-    }
-    .site-toggle-link {
-      text-decoration: none;
-      transition: color 0.15s ease, background 0.15s ease;
-    }
-    .site-toggle-link:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
-    .site-toggle-current { background: #fff; color: var(--ink-800); cursor: default; }
-    /* On mobile, hide the toggle so the hamburger / login CTAs get room. */
-    @media (max-width: 760px) { .site-toggle { display: none; } }
-
-    /* Site switcher — toggle between the landing page (this site) and the
-       authenticated portal (portal.mpactcap.com). Same component sits on
-       both sites; "current" segment is highlighted, the other navigates. */
-    .site-toggle {
-      display: inline-flex;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-dark);
-      border-radius: 999px;
-      padding: 3px;
-      gap: 2px;
-      flex-shrink: 0;
-    }
-    .site-toggle > * {
-      display: inline-flex; align-items: center;
-      padding: 7px 14px;
-      border-radius: 999px;
-      font-size: 13px; font-weight: 600;
-      line-height: 1; white-space: nowrap;
-      transition: background 0.15s ease, color 0.15s ease, opacity 0.15s ease;
-    }
-    .site-toggle-current {
-      background: var(--magenta);
-      color: #fff;
-      cursor: default;
-    }
-    .site-toggle-link {
-      color: var(--cloud-100);
-      opacity: 0.72;
-    }
-    .site-toggle-link:hover {
-      background: rgba(255, 255, 255, 0.08);
-      opacity: 1; color: #fff;
-    }
-    @media (max-width: 780px) {
-      .site-toggle > * { padding: 6px 11px; font-size: 12px; }
-    }
 
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
@@ -1005,44 +941,51 @@
        Responsive
        ============================================================ */
     /* Header layout tiers. Measured widths: brand ≈310px, inline nav ≈490px,
-       site toggle ≈160px, Staff + Client logins ≈255px. Each tier shows only
-       what fits on one row, so nothing is ever pushed past the right edge
-       (the topbar clips overflow):
-         ≥1360px     brand · nav · toggle · logins
-         1200–1359   brand · nav · logins
-         1025–1199   brand · toggle · logins · menu
-         781–1024    brand · logins · menu   (toggle moves into the drawer)
-         ≤780        brand · menu            (logins move into the drawer) */
+       Enter Portal ≈150px. Each tier shows only what fits on one row, so
+       nothing is ever pushed past the right edge (the topbar clips overflow):
+         ≥1120px  brand · nav · Enter Portal
+         <1120px  brand · Enter Portal · menu  (section links move into the drawer)
+       Enter Portal stays visible at every width — it's the site's one entry
+       point to portal.mpactcap.com. */
+    [hidden] { display: none !important; }
     .topbar .wrap { max-width: 1440px; }
     .nav { margin-left: 16px; }
     .nav a { padding: 8px 11px; }
-    .nav-cta { gap: 8px; }
-    .nav-cta .btn { padding: 10px 16px; }
-    .nav-cta .site-toggle > * { padding: 6px 11px; font-size: 12px; }
+    .nav-cta .btn { padding: 10px 18px; }
     .brand-text small { letter-spacing: 0.1em; }
     /* Safety net: if a tier is ever too tight, the brand caption truncates
-       instead of the login buttons being clipped. */
+       instead of the button being clipped. */
     .brand { flex-shrink: 1; }
     .brand-text, .brand-text small { overflow: hidden; text-overflow: ellipsis; }
-    @media (min-width: 1200px) {
+    @media (min-width: 1120px) {
       .hamburger { display: none; }
       .mobile-nav { display: none !important; }
     }
-    @media (max-width: 1359px) {
-      .nav-cta .site-toggle { display: none; }
-    }
-    @media (max-width: 1199px) {
+    @media (max-width: 1119.98px) {
       .nav { display: none; }
-      .nav-cta .site-toggle { display: inline-flex; }
     }
+    @media (max-width: 780px) {
+      .nav-cta { display: flex !important; margin-left: auto; }
+      .nav-cta .btn { padding: 8px 14px; font-size: 13px; }
+      .hamburger { margin-left: 0 !important; }
+    }
+    @media (max-width: 400px) {
+      .nav-cta .btn .arrow { display: none; }
+      .nav-cta .btn { padding: 8px 12px; }
+    }
+
+    /* Portal tiles (platform section) */
+    .portal-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .portal-tile {
+      display: flex; flex-direction: column; gap: 6px;
+      padding: 18px 20px; border-radius: 16px;
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border-dark);
+    }
+    .portal-tile strong { color: #fff; font-size: 16px; font-weight: 600; }
+    .portal-tile span { color: var(--cloud-100); opacity: 0.78; font-size: 14px; line-height: 1.5; }
+    @media (max-width: 520px) { .portal-tiles { grid-template-columns: 1fr; } }
     @media (max-width: 1024px) {
       .nav { display: none; }
-      /* Below desktop the primary nav collapses into the hamburger; the
-         login buttons + hamburger already crowd this range, so drop the
-         header site-toggle here (the mobile drawer keeps its own toggle,
-         and the login buttons link to the portal). Prevents the header
-         from overflowing between ~780–1024px. */
-      .nav-cta .site-toggle { display: none; }
       .hero-grid, .platform-grid, .mission-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
       .divs-grid { grid-template-columns: 1fr 1fr; }
       .people-grid { grid-template-columns: 1fr 1fr; }
@@ -1145,12 +1088,7 @@
       </nav>
 
       <div class="nav-cta">
-        <nav class="site-toggle" aria-label="Site switcher">
-          <span class="site-toggle-current" aria-current="page">Landing</span>
-          <a class="site-toggle-link" href="https://portal.mpactcap.com">Portal</a>
-        </nav>
-        <a class="btn btn-ghost" data-login="staff" href="#">Staff Login</a>
-        <a class="btn btn-primary" data-login="client" href="#">Client Login <span class="arrow">→</span></a>
+        <a class="btn btn-primary" href="https://portal.mpactcap.com">Enter Portal <span class="arrow">→</span></a>
       </div>
 
       <button class="hamburger" aria-label="Open menu" aria-expanded="false" id="hamburger">
@@ -1165,13 +1103,9 @@
       <a href="#advisory-board">Advisory Board</a>
       <a href="#news">News</a>
       <a href="#contact">Contact</a>
-      <nav class="site-toggle" aria-label="Site switcher" style="margin-top:18px;align-self:flex-start;">
-        <span class="site-toggle-current" aria-current="page">Landing</span>
-        <a class="site-toggle-link" href="https://portal.mpactcap.com" rel="noopener">Portal</a>
-      </nav>
+
       <div class="btn-row">
-        <a class="btn btn-ghost" data-login="staff" href="#">Staff Login</a>
-        <a class="btn btn-primary" data-login="client" href="#">Client Login</a>
+        <a class="btn btn-primary" href="https://portal.mpactcap.com">Enter Portal <span class="arrow">→</span></a>
       </div>
     </div>
   </header>
@@ -1196,7 +1130,7 @@
           </div>
 
           <div class="hero-ctas">
-            <a class="btn btn-primary btn-lg" data-login="client" href="#">Open the Platform <span class="arrow">→</span></a>
+            <a class="btn btn-primary btn-lg" href="https://portal.mpactcap.com">Enter Portal <span class="arrow">→</span></a>
             <a class="btn btn-ghost btn-lg" href="#" data-info-modal>Request an Introduction</a>
           </div>
 
@@ -1353,13 +1287,22 @@
       <div class="wrap">
         <div class="platform-header">
           <span class="eyebrow">MPact Asset Management Platform</span>
-          <h2 style="color:#fff;">Institutional-grade portal with auditable, SEC-aligned controls.</h2>
-          <p class="lead">Purpose-built for an SEC-registered investment adviser. Staff and SMA clients monitor portfolios, impact, and reporting on infrastructure designed to meet the controls expected of registrants under Reg&nbsp;S-P, Reg&nbsp;S-ID, the SEC's cybersecurity risk-management rules, and the evolving regulatory framework for digital asset custody, safekeeping, and disclosure.</p>
+          <h2 style="color:#fff;">Asset Management &amp; Research Portals.</h2>
+          <p class="lead">One entry point for MPact Capital staff, SMA clients and approved research partners &mdash; portfolios, statements, impact reporting and housing-market research, each in its own invite-only portal.</p>
         </div>
 
         <div class="platform-grid">
           <div class="platform-main">
-            <div class="feature-list">
+            <div class="portal-tiles">
+              <div class="portal-tile"><strong>MPC Employees</strong><span>Clients, SMAs, onboarding, approvals and reporting.</span></div>
+              <div class="portal-tile"><strong>MPC Clients</strong><span>Read-only view of your account, statements and impact.</span></div>
+              <div class="portal-tile"><strong>Research</strong><span>Housing-policy and market research for approved users.</span></div>
+              <div class="portal-tile"><strong>Heirs Data IQ</strong><span>Heirs&rsquo;-property market intelligence for program teams.</span></div>
+            </div>
+            <!-- SECURITY POSTURE — hidden 2026-10-10 until independently audited.
+                 Remove the `hidden` attribute (here and on .compliance-strip below)
+                 to restore once the claims are verified. -->
+            <div class="feature-list" hidden>
             <div class="feature">
               <div class="feature-icon" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
@@ -1400,7 +1343,7 @@
         </div>
 
         <aside class="platform-side">
-          <div class="compliance-strip">
+          <div class="compliance-strip" hidden>
             <h4>Security &amp; compliance posture</h4>
             <ul>
               <li>SEC-registered investment adviser — CRD&nbsp;#335008, SEC&nbsp;#801-135352</li>
@@ -1415,9 +1358,9 @@
           </div>
 
           <div class="platform-cta">
-            <h3>Sign in to your Pact</h3>
-            <p>SMA clients and authorized investors &mdash; read-only access to portfolios, statements, and impact reports.</p>
-            <a class="btn btn-primary btn-lg" data-login="client" href="#">Client Login <span class="arrow">&rarr;</span></a>
+            <h3>Enter the portal</h3>
+            <p>Choose your portal &mdash; employees, clients, research or Heirs Data IQ &mdash; or start a new-client inquiry.</p>
+            <a class="btn btn-primary btn-lg" href="https://portal.mpactcap.com">Enter Portal <span class="arrow">&rarr;</span></a>
           </div>
         </aside>
         </div><!-- /.platform-grid -->
@@ -1597,10 +1540,10 @@
           <div>
             <span class="eyebrow on-dark">For MPact clients</span>
             <h2>See your impact, in real time.</h2>
-            <p>Sign in to your MPact Pact for live portfolio performance alongside the outcomes your capital is producing &mdash; first-time homeowners reached, communities strengthened, and ICMA-aligned impact reporting, all in one secure workspace.</p>
+            <p>Sign in to your MPact Pact for live portfolio performance alongside the outcomes your capital is producing &mdash; first-time homeowners reached, communities strengthened, and ICMA-aligned impact reporting, all in one workspace.</p>
           </div>
           <div class="actions">
-            <a class="btn btn-primary btn-lg" data-login="client" href="#">Client Login <span class="arrow">→</span></a>
+            <a class="btn btn-primary btn-lg" href="https://portal.mpactcap.com">Enter Portal <span class="arrow">→</span></a>
             <a class="btn btn-ghost btn-lg" href="#" data-info-modal>Not a client yet?</a>
           </div>
         </div>
@@ -1634,7 +1577,7 @@
             </div>
             <div>
               <strong>Existing platform user?</strong>
-              <span><a href="#" data-login="client">Sign in to the MPact platform →</a></span>
+              <span><a href="https://portal.mpactcap.com">Enter the MPact portal →</a></span>
             </div>
           </div>
         </div>
@@ -1665,8 +1608,7 @@
         </div>
         <div class="foot-col">
           <h5>Platform</h5>
-          <a href="#" data-login="staff">Staff Login</a>
-          <a href="#" data-login="client">Client Login</a>
+          <a href="https://portal.mpactcap.com">Enter Portal</a>
           <a href="#contact">Request access</a>
         </div>
       </div>
@@ -1700,27 +1642,6 @@
     // so document.getElementById(...) on either would return null at
     // script-parse time and every CTA click would throw silently.
     document.addEventListener('DOMContentLoaded', function () {
-    // CONFIG — swap LOGIN_URL when the MPact Asset Management Platform
-    // (mpact-fund-management / "Lighthouse") is deployed. The app routes
-    // by user_type after AAL2, so Staff and Client share a single
-    // /login URL. A ?role= hint is appended for optional copy switching.
-    const CONFIG = {
-      // Production target: deploy the mpact-fund-management Next.js app to Vercel
-      // and point portal.mpactcap.com (Namecheap CNAME) at it. Until that's live,
-      // these buttons will fail to resolve — flip to a working URL when ready.
-      LOGIN_URL: 'https://portal.mpactcap.com/login',
-    };
-
-    document.querySelectorAll('[data-login]').forEach((el) => {
-      el.addEventListener('click', (e) => {
-        e.preventDefault();
-        const role = el.getAttribute('data-login');
-        const url = new URL(CONFIG.LOGIN_URL);
-        url.searchParams.set('role', role);
-        window.location.href = url.toString();
-      });
-    });
-
     const hamburger = document.getElementById('hamburger');
     const mobileNav = document.getElementById('mobileNav');
     hamburger?.addEventListener('click', () => {
